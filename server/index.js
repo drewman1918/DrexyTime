@@ -5,7 +5,8 @@ const express = require('express')
       , Auth0Strategy = require('passport-auth0')
       , massive = require('massive')
       , controller = require('./controller')
-      , bodyParser = require('body-parser');
+      , bodyParser = require('body-parser')
+      , nodemailer = require('nodemailer');
 
 const {
     SERVER_PORT,
@@ -14,7 +15,9 @@ const {
     CLIENT_ID,
     CLIENT_SECRET,
     CALLBACK_URL,
-    CONNECTION_STRING
+    CONNECTION_STRING,
+    EMAIL,
+    EMAIL_PASSWORD
 } = process.env;
 
 const app = express();
@@ -83,7 +86,6 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 }));
 
 //Authentication Calls
-app.get('/api/users', controller.getAllUsers);
 app.get('/auth/me', (req, res, next) => {
     res.send(req.user)
 })
@@ -100,8 +102,38 @@ app.put('/api/memos/:memoid', controller.editMemo);
 
 //Employee calls
 app.get('/api/employees', controller.getEmployees);
+app.put('/api/employees/:employeeid', controller.updateEmployee);
 
 //Time by employee
 app.get('/api/maindata/:startDate/:endDate', controller.getMainData);
+
+// Nodemailer
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: EMAIL,
+        pass: EMAIL_PASSWORD
+    }
+});
+
+app.post('/api/email', (req, res, next) => {
+    const { subject, senderName, message, senderEmail} = req.body;
+    var mail = {
+        from: EMAIL,
+        to: EMAIL,
+        subject: subject,
+        html: "Name: " + senderName + "<br/> Message: " + message + "<br/>" + "Respond to: " + senderEmail
+    }
+    transporter.sendMail(mail, (error, response) => {
+        if(error){
+            console.log("Email sending error");
+            console.log(error);
+        }else {
+            console.log("Success!")
+        }
+        transporter.close();
+    })
+    res.sendStatus(201);
+})
 
 app.listen(SERVER_PORT, () => console.log( `You shall not pass on port: ${SERVER_PORT}` ))

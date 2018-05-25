@@ -1,11 +1,4 @@
 module.exports = {
-    getAllUsers: (req, res, next) => {
-        req.app.get('db').get_all_users()
-            .then( users => {
-                res.status(200).send(users)
-            })
-    },
-
     getAllClients: (req, res, next) => {
         req.app.get('db').get_all_clients()
             .then( clients => {
@@ -62,5 +55,12 @@ module.exports = {
             .then( mainData => {
                 res.status(200).send(mainData)
             })
+    },
+
+    updateEmployee: (req, res, next) => {
+        const { employeeid } = req.params;
+        const {firstname, lastname, role, payrate, billingrate, email} = req.body;
+        req.app.get('db').update_employee([employeeid, firstname, lastname, role, payrate, billingrate, email])
+            .then( () => res.sendStatus(200));
     }
 }

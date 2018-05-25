@@ -78,7 +78,7 @@ class TimePerEmployee extends Component{
                 datasets: [{
                     data: [...myData],
                     backgroundColor: ['#4caf50', '#ffeb3b', '#b71c1c'],
-                    hoverBackgroundColor: ['#67daff', '#ffff72', '#f05545']
+                    hoverBackgroundColor: ['#98ee99', '#ffff72', '#f05545']
                 }],
             };
 
@@ -125,7 +125,7 @@ class TimePerEmployee extends Component{
 
                 <div className = "myTime">
                     <div className = "titleContainer">
-                        <h2>Employee Statistics</h2>
+                        <h2><span className = "accent">Employee</span>Statistics</h2>
                     </div>
                 </div>
 

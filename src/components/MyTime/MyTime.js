@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route, HashRouter } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 import './MyTime.css';
 import Today from './Today';
 import TwoWeek from './TwoWeek';
@@ -36,7 +36,7 @@ class MyTime extends Component{
             <div className = "myTimeContainer">
                 <div className = "myTime">
                     <div className = "titleContainer">
-                        <h2>My Time</h2>
+                        <h2><span className = "accent">My</span>Time</h2>
                     </div>
 
                     <div className = "myTimeNav">

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const styles = {
   row: {
@@ -15,7 +16,7 @@ function ImageAvatars(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
-      <Avatar alt= {`${props.firstname} ${props.lastname}`} src={props.profilepicture} className={classes.avatar} />
+      <Link to = "/myaccount"><Avatar alt= {`${props.firstname} ${props.lastname}`} src={props.profilepicture} className={classes.avatar} /></Link>
     </div>
   );
 }

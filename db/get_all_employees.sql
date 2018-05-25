@@ -1,2 +1,3 @@
 SELECT *
-FROM employees;
+FROM employees
+ORDER BY firstname;

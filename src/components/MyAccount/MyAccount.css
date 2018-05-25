@@ -1,0 +1,117 @@
+.myAccountContainer{
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 30px;
+}
+
+.MATitleContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    background: #f5f5f5;
+    color: #006978;
+    font-size: 24px;
+}
+
+.contactForm{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 15px 0px 35px;
+    border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+.name, .subject, .message{
+    margin-top: 10px;
+}
+
+.name > input {
+    width: 50%;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.subject > input{
+    width: 95%;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.name{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nameInput{
+    width: 100%;
+}
+
+.nameInput > input{
+    width: 90%;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.message{
+    width: 100%;
+}
+
+.message > textarea {
+    width: 95%;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 5px;
+    resize: none;
+    height: 150px;
+}
+
+
+.contactFormButton{
+    top: 10px;
+    width: 97%;
+}
+
+.contactFormTitle{
+    width: 95%;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #006978;
+    font-size: 24px;
+}
+
+.myAccountInfo{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 30px 10px;
+}
+
+.profilePictureContainer > img {
+    width: 20vw;
+    margin-bottom: 10px;
+}
+
+.accountInfoP {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.accountInfo{
+    text-transform: uppercase;
+}
+

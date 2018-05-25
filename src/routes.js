@@ -5,10 +5,12 @@ import TimePerClient from './components/TimePerClient/TimePerClient';
 import TimePerEmployee from './components/TimePerEmployee/TimePerEmployee';
 import ClientManagement from './components/ClientManagement/ClientManagement';
 import EmployeeManagement from './components/EmployeeManagement/EmployeeManagement';
+import MyAccount from './components/MyAccount/MyAccount';
 
 const routes = (
         <Switch>
             <Route path = "/mytime" component = {MyTime}/>
+            <Route path = "/myaccount" component = {MyAccount}/>
             <Route path = "/timeperclient" component = {TimePerClient}/>
             <Route path = "/timeperemployee" component = {TimePerEmployee}/>
             <Route path = "/clientmanagement" component = {ClientManagement}/>
