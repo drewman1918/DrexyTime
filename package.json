@@ -1,0 +1,42 @@
+{
+  "name": "drexytime",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "@material-ui/icons": "^1.0.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "chart.js": "^2.7.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "massive": "^4.8.2",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.1",
+    "react": "^16.3.2",
+    "react-chartjs-2": "^2.7.2",
+    "react-day-picker": "^7.1.9",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-select": "^2.0.0-beta.5",
+    "redux": "^4.0.0",
+    "redux-promise-middleware": "^5.1.1",
+    "typeface-roboto": "0.0.54"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "main": "./server/index.js",
+  "proxy": "http://localhost:7122",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

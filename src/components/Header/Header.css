@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+.loginTitle{
+    font-size: 30px;
+    text-align: center;
+    color: #b71c1c;
+    font-family: 'Lobster', cursive;
+    margin: 10px 0px;
+  }
+  
+  .loginTitle > span{
+    font-family: 'Roboto', sans-serif;
+    color: #006876;
+  }
+
+.header{
+    height: 64px;
+    background: #F5F5F6;
+    width: 100vw;
+    z-index: 1;
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.43);
+    -moz-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.43);
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.43);
+}
+
+.headerContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
