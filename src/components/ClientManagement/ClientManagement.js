@@ -23,15 +23,21 @@ class ClientManagement extends Component{
         this.handleFirstName = this.handleFirstName.bind(this);
         this.handleLastName = this.handleLastName.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
+        this.addClient = this.addClient.bind(this);
+        this.getClients = this.getClients.bind(this);
     }
 
     componentDidMount(){
+        this.getClients();
+    }
+
+    getClients(){
         axios.get('/api/clients')
-            .then(res => {
-                this.setState({
-                    clients: res.data
-                })
+        .then(res => {
+            this.setState({
+                clients: res.data
             })
+        })
     }
 
     handleFirstName(e){
@@ -58,14 +64,22 @@ class ClientManagement extends Component{
         });
       }
 
-      handleClose = () => {
-        this.setState({
-            email: '',
-            firstname: '',
-            lastname: '',
-            open: false
-        });
-      }
+    handleClose = () => {
+    this.setState({
+        email: '',
+        firstname: '',
+        lastname: '',
+        open: false
+    });
+    }
+
+    addClient(){
+        axios.post('/api/clients', {firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email})
+            .then( () => {
+                this.handleClose();
+                this.getClients();
+            })
+    }
 
     
     render(){
@@ -135,7 +149,7 @@ class ClientManagement extends Component{
                             <Button onClick={this.handleClose} color="primary">
                             Cancel
                             </Button>
-                            <Button onClick={this.handleClose} color="primary">
+                            <Button onClick={this.addClient} color="primary">
                             Add
                             </Button>
                         </DialogActions>

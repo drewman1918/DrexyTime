@@ -90,11 +90,16 @@ app.get('/auth/me', (req, res, next) => {
     res.send(req.user)
 })
 
-//Client and Project calls
+//Client calls
 app.get('/api/clients', controller.getAllClients);
+app.post('/api/clients', controller.addClient);
+app.put('/api/clients/:clientid', controller.updateEmail);
+
+//Project Calls
 app.get('/api/projects/:clientID', controller.getClientProjects);
 app.delete('/api/projects/:projectid', controller.deleteProject);
 app.put('/api/projects/:projectid', controller.editProject);
+app.post('/api/projects', controller.addProject);
 
 //Memo calls
 app.post('/api/memos', controller.addMemo);

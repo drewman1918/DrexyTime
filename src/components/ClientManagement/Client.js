@@ -18,6 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import DoneIcon from '@material-ui/icons/Done';
 
 export default class Client extends Component {
     constructor(){
@@ -31,12 +32,14 @@ export default class Client extends Component {
             name: '',
             type: '',
             flatfee: '',
-            open: false
+            open: false,
+            editingEmail: false 
         }
         this.getProjects = this.getProjects.bind(this);
         this.handleName = this.handleName.bind(this);
         this.handleType = this.handleType.bind(this);
         this.handleFlatFee = this.handleFlatFee.bind(this);
+        this.handleEmail = this.handleEmail.bind(this);
     }
 
     componentDidMount(){
@@ -49,6 +52,12 @@ export default class Client extends Component {
         })
 
         this.getProjects();
+    }
+
+    handleEmail(e){
+        this.setState({
+            email: e.target.value
+        })
     }
 
     handleName(e){
@@ -84,11 +93,31 @@ export default class Client extends Component {
         });
       }
 
-      handleClose = () => {
-        this.setState({
-            open: false
-        });
-      }
+    handleClose = () => {
+    this.setState({
+        open: false
+    });
+    }
+
+    updateEmail = () => {
+        axios.put(`/api/clients/${this.props.clientid}`, {email: this.state.email})
+            .then( () => {
+                this.setState({editingEmail: false})
+            })
+    }
+
+    addProject = () => {
+        axios.post('/api/projects', {clientid: this.props.clientid, name: this.state.name, type: this.state.type, flatfee: this.state.flatfee})
+            .then( () => {
+                this.getProjects()
+                this.setState({
+                    name: '',
+                    type:'',
+                    flatfee: '',
+                    open: false
+                })
+            })
+    }
 
     render(){
 
@@ -111,7 +140,14 @@ export default class Client extends Component {
                 <div className = "clientInfo">
 
                     <div className = "clientEmail">
-                        <p>Email: </p>{this.state.email}
+                        <p>Email: </p>
+                        <input onClick = {() => this.setState({editingEmail: true})} onChange = {this.handleEmail} value = {this.state.email || ''}/>
+
+                        { (this.state.editingEmail) ? 
+                        <Tooltip title = "Confirm Changes"><Button mini onClick = {this.updateEmail} className = "editButton" variant = "fab" color = "primary"><DoneIcon/></Button></Tooltip>
+                        :
+                        null
+                        }
                     </div>
 
                     <div className = "projectsAccordion">
@@ -188,7 +224,7 @@ export default class Client extends Component {
                             <Button onClick={this.handleClose} color="primary">
                             Cancel
                             </Button>
-                            <Button onClick={this.handleClose} color="primary">
+                            <Button onClick={this.addProject} color="primary">
                             Add
                             </Button>
                         </DialogActions>

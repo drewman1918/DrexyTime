@@ -87,5 +87,24 @@ module.exports = {
         const { name, type, flatfee } = req.body;
         req.app.get('db').edit_project([projectid, name, type, flatfee])
             .then( () => res.sendStatus(200));
+    },
+
+    addClient: (req, res, next) => {
+        const { firstname, lastname, email } = req.body;
+        req.app.get('db').add_client([firstname, lastname, email])
+            .then( () => {res.sendStatus(200)})
+    },
+
+    updateEmail: (req, res, next) => {
+        const { clientid } = req.params;
+        const { email } = req.body;
+        req.app.get('db').update_email([clientid, email])
+            .then( () => res.sendStatus(200))
+    },
+
+    addProject: (req, res, next) => {
+        const { clientid, name, type, flatfee} = req.body;
+        req.app.get('db').add_project([clientid, name, type, flatfee])
+            .then( () => res.sendStatus(200))
     }
 }
