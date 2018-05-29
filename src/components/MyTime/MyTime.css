@@ -47,6 +47,10 @@
     border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 
+.todayNav > h3, .twoWeekNav > h3 {
+    color: #006876;
+}
+
 .active{
     border-bottom: 3px solid #b71c1c;
 }
