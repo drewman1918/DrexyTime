@@ -41,15 +41,15 @@ class MyTime extends Component{
 
                     <div className = "myTimeNav">
 
-                        <Link to = "/mytime/today" style={{ textDecoration: 'none', color: "#0097a7", width: "100%" }}>
+                        <Link to = "/mytime/day" style={{ textDecoration: 'none', color: "#0097a7", width: "100%" }}>
                             <div className = {`todayNav ${this.state.today}`} onClick = {this.clickToday}>
-                                <h3>Today</h3>
+                                <h3>Day</h3>
                             </div>
                         </Link>
 
-                        <Link to = "/mytime/twoweek" style={{ textDecoration: 'none', color: "#0097a7", width: "100%" }}>
+                        <Link to = "/mytime/week" style={{ textDecoration: 'none', color: "#0097a7", width: "100%" }}>
                             <div className = {`twoWeekNav ${this.state.twoWeek}`} onClick = {this.clickTwoWeek}>
-                                <h3>Two Week</h3>
+                                <h3>Week</h3>
                             </div>
                         </Link>
 
@@ -58,8 +58,8 @@ class MyTime extends Component{
                 </div>
                 <div className = "myTimeContent">
                         <Switch>
-                            <Route path = "/mytime/today" component = {Today}/>
-                            <Route path = "/mytime/twoweek" component = {TwoWeek}/>
+                            <Route path = "/mytime/day" component = {Today}/>
+                            <Route path = "/mytime/week" component = {TwoWeek}/>
                         </Switch>
                 </div>
             </div>

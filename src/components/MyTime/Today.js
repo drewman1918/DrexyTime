@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import TodayMemo from './TodayMemo';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { getTodayMemos } from './../../ducks/memoReducer';
+import "./MyTime.css";
+import { Button } from '@material-ui/core';
 
 class Today extends Component{
     constructor(){
         super()
 
         this.state = {
-            loading: false
+            loading: false,
+            day: new Date()
         }
         this.getTodayMemos = this.getTodayMemos.bind(this);
+        this.handleDay = this.handleDay.bind(this);
     }
 
     componentDidMount(){
@@ -27,11 +32,16 @@ class Today extends Component{
     }
 
     getTodayMemos(){
-        var today = new Date().toDateString();
-        axios.get(`/api/memos/${this.props.employeeid}/${today}`)
+        axios.get(`/api/memos/${this.props.employeeid}/${this.state.day.toDateString()}`)
             .then( res => {
                 this.props.getTodayMemos(res.data)
             })
+    }
+
+    handleDay(day){
+        this.setState({
+            day: day
+        })
     }
     
     render(){
@@ -45,6 +55,25 @@ class Today extends Component{
 
         return(
             <div>
+                <div className = "dayPicker">
+
+                        <div className = "picker">
+                            <p>Choose Date:</p>
+                            <DayPickerInput 
+                                inputProps={{ style: { 
+                                    width: "100%",  
+                                    fontSize: "16px", 
+                                    minHeight: "38px", 
+                                    textAlign: "center",
+                                    cursor: "pointer",
+                                    outline: "none" } }} 
+                                    placeholder = "Choose Start Date"
+                                    value = {this.state.day}
+                                    onDayChange = {this.handleDay}/>
+                        </div>
+
+                        <Button onClick = {this.getTodayMemos} variant = "raised" color = "secondary">Fetch Data</Button>
+                </div>
                 {memos}
             </div>
         )

@@ -18,7 +18,7 @@ class Timer extends Component{
             projectID: '',
             hours: '',
             timing: 'false',
-            date: null,
+            date: '',
         }
         this.handleClient = this.handleClient.bind(this);
         this.handleProject = this.handleProject.bind(this);
@@ -88,7 +88,7 @@ class Timer extends Component{
     }
 
     stopTimer(){
-        let time = Number((this.seconds / 60 / 60)).toFixed(2);
+        let time = (this.seconds / 60 / 60).toFixed(2);
         this.setState({
             timing: 'paused',
             hours: time
@@ -107,13 +107,13 @@ class Timer extends Component{
 
     handleHours(e){
         this.setState({
-            hours: Number(e.target.value)
+            hours: e.target.value
         })
         this.seconds = e.target.value * 60 * 60;
     }
 
     submitTime(){
-        let memo = {hours: this.state.hours, date: this.state.date, memo: this.state.memo, projectid: this.state.projectID, employeeid: this.props.employeeid};
+        let memo = {hours: Number(this.state.hours), date: this.state.date, memo: this.state.memo, projectid: this.state.projectID, employeeid: this.props.employeeid};
         axios.post('/api/memos', {memo})
             .then( () => {
                 this.seconds = 0;

@@ -66,6 +66,7 @@ class TimePerEmployee extends Component{
     }
     
     render(){
+        //This generates the list of employees instead of using a different component to do it, since none of this data will be editable.
         const employees = this.state.employees.map( employee => {
 
             const mainData = this.state.mainData.filter( entry => entry.employeeid == employee.employeeid)

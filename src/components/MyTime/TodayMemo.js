@@ -17,7 +17,8 @@ export default class TodayMemo extends Component {
             memoHours: '',
             memo: '',
             client: '',
-            date: ''
+            date: '',
+            editing: false
         }
         this.handleDayChange = this.handleDayChange.bind(this)
         this.handleHoursChange = this.handleHoursChange.bind(this);
@@ -28,6 +29,9 @@ export default class TodayMemo extends Component {
     }
 
     submitEdit(){
+        this.setState({
+            editing: false
+        })
         axios.put(`/api/memos/${this.props.memoid}`, {memo: this.state.memo, hours: this.state.memoHours, date: this.state.date})
             .then(() => {
                 this.props.getMemos()
@@ -66,7 +70,14 @@ export default class TodayMemo extends Component {
             memoHours: this.props.memoHours,
             memo: this.props.memo,
             date: this.props.date.slice(0, 10),
-            client: this.props.client
+            client: this.props.client,
+            editing: false
+        })
+    }
+
+    startEdit = () => {
+        this.setState({
+            editing: true
         })
     }
 
@@ -96,16 +107,21 @@ export default class TodayMemo extends Component {
                                 outline: "none" } }} 
                                 placeholder = "Choose Date"
                                 value = {this.state.date}
-                                onDayChange = {this.handleDayChange}/>
+                                onDayChange = {this.handleDayChange}
+                                onClick = {this.startEdit}/>
                     </div>
                     
-                    <input onChange = {this.handleHoursChange} className = "memoHours" value = {this.state.memoHours}/>
+                    <input onClick = {this.startEdit} onChange = {this.handleHoursChange} className = "memoHours" value = {this.state.memoHours}/>
 
-                    <textarea onChange = {this.handleMemoChange} className = "memoMemo" value = {this.state.memo}/>
+                    <textarea onClick = {this.startEdit} onChange = {this.handleMemoChange} className = "memoMemo" value = {this.state.memo}/>
 
                     <div className = "buttonRow">
+                        { (this.state.editing) ?
                         <Tooltip title = "Confirm Changes"><Button mini onClick = {this.submitEdit} className = "editButton" variant = "fab" color = "primary"><DoneIcon/></Button></Tooltip>
-                        <Tooltip title = "Delete Entry"><Button mini onClick = {this.deleteMemo} className = "deleteButton" variant = "fab" color = "secondary"><DeleteIcon/></Button></Tooltip>
+                        :
+                        null
+                        }
+                        <Tooltip title = "Delete Entry"><DeleteIcon className = "deleteIcon" onClick = {this.deleteMemo}/></Tooltip>
                     </div>
 
                 </div>

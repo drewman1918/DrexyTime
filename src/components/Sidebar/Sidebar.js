@@ -18,7 +18,7 @@ class Sidebar extends Component{
         return(
             <div className = "sidebar">
                 <div className = "menu">
-                    <Link to = "/mytime/today" style={{ textDecoration: 'none' }}>
+                    <Link to = "/mytime/day" style={{ textDecoration: 'none' }}>
                         <ListItem button>
                             <ListItemIcon>
                                 <Alarm color = "primary"/>
@@ -29,23 +29,23 @@ class Sidebar extends Component{
 
                     <Divider />
 
-                    <Link to = "/timeperemployee" style={{ textDecoration: 'none' }}>
+                    <Link to = "/employeestatistics" style={{ textDecoration: 'none' }}>
                         <ListItem button>
                             <ListItemIcon>
                                 <ShowChart color = "primary"/>
                             </ListItemIcon>
-                            <ListItemText primary= "Time per Employee"/>
+                            <ListItemText primary= "Employee Statistics"/>
                         </ListItem>
                     </Link>
 
                     <Divider />
 
-                    <Link to = "/timeperclient" style={{ textDecoration: 'none' }}>
+                    <Link to = "/clientstatistics" style={{ textDecoration: 'none' }}>
                         <ListItem button>
                             <ListItemIcon>
                                 <InsertChart color = "primary" />
                             </ListItemIcon>
-                            <ListItemText primary="Time per Client" />
+                            <ListItemText primary="Client Statistics" />
                         </ListItem>
                     </Link>
 

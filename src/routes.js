@@ -11,8 +11,8 @@ const routes = (
         <Switch>
             <Route path = "/mytime" component = {MyTime}/>
             <Route path = "/myaccount" component = {MyAccount}/>
-            <Route path = "/timeperclient" component = {TimePerClient}/>
-            <Route path = "/timeperemployee" component = {TimePerEmployee}/>
+            <Route path = "/clientstatistics" component = {TimePerClient}/>
+            <Route path = "/employeestatistics" component = {TimePerEmployee}/>
             <Route path = "/clientmanagement" component = {ClientManagement}/>
             <Route path = "/employeemanagement" component = {EmployeeManagement}/>
         </Switch>
