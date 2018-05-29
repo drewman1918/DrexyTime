@@ -103,6 +103,8 @@ app.put('/api/memos/:memoid', controller.editMemo);
 //Employee calls
 app.get('/api/employees', controller.getEmployees);
 app.put('/api/employees/:employeeid', controller.updateEmployee);
+app.delete('/api/employees/:employeeid', controller.deleteEmployee);
+app.post('/api/employees', controller.addEmployee);
 
 //Time by employee
 app.get('/api/maindata/:startDate/:endDate', controller.getMainData);

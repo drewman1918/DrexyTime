@@ -62,5 +62,17 @@ module.exports = {
         const {firstname, lastname, role, payrate, billingrate, email} = req.body;
         req.app.get('db').update_employee([employeeid, firstname, lastname, role, payrate, billingrate, email])
             .then( () => res.sendStatus(200));
+    },
+
+    deleteEmployee: (req, res, next) => {
+        const { employeeid } = req.params;
+        req.app.get('db').delete_employee([employeeid])
+            .then( () => res.sendStatus(200));
+    },
+
+    addEmployee: (req, res, next) => {
+        const { email, firstname, lastname, billingrate, payrate, role } = req.body;
+        req.app.get('db').add_employee([email, firstname, lastname, billingrate, payrate, role])
+            .then( () => res.sendStatus(200));
     }
 }

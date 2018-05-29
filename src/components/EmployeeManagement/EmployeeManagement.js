@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Employee from './Employee';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 import "./EmployeeManagement.css";
 
 class EmployeeManagement extends Component{
@@ -9,12 +19,13 @@ class EmployeeManagement extends Component{
 
         this.state={
             employees: [],
-            billingrate: 0,
+            billingrate: '',
             email: '',
             firstname: '',
             lastname: '',
             payrate: '',
-            role: ''
+            role: '',
+            open: false
         }
         this.getEmployees = this.getEmployees.bind(this);
         this.handleFirstName = this.handleFirstName.bind(this);
@@ -23,11 +34,29 @@ class EmployeeManagement extends Component{
         this.handlePayRate = this.handlePayRate.bind(this);
         this.handleBillRate = this.handleBillRate.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.addEmployee = this.addEmployee.bind(this);
     }
 
     componentDidMount(){
         this.getEmployees();
     }
+
+    handleClickOpen = () => {
+        this.setState({ open: true });
+      };
+    
+      handleClose = () => {
+        this.setState({
+            billingrate: '',
+            email: '',
+            firstname: '',
+            lastname: '',
+            payrate: '',
+            role: '',
+            open: false
+        });
+      };
 
     handleFirstName(e){
         this.setState({
@@ -73,12 +102,21 @@ class EmployeeManagement extends Component{
                 })
             });
     }
+
+    addEmployee(){
+        axios.post('/api/employees', {email: this.state.email, firstname: this.state.firstname, lastname: this.state.lastname, billingrate: this.state.billingrate, payrate: this.state.payrate, role: this.state.role})
+            .then( () => {
+                this.getEmployees();
+                this.handleClose();
+            })
+        
+    }
     
     render(){
         const employees = this.state.employees.map( employee => {
             return(
                 <div key = {employee.employeeid}>
-                    <Employee employeeInfo = {employee}/>
+                    <Employee getEmployeesFn = {this.getEmployees} employeeInfo = {employee}/>
                 </div>
             )
         })
@@ -89,22 +127,95 @@ class EmployeeManagement extends Component{
                     <h2><span className = "accent">Employee</span>Management</h2>
                 </div>
 
-                <div className = "addEmployee">
-                    <h2>Add Employee</h2>
-                    <div className = "addEmployeeInputFields">
-                        <div><input onChange = {this.handleFirstName} value = {this.state.firstname}/></div>
-                        <div><input onChange = {this.handleLastName}  value = {this.state.lastname}/></div>
-                        <div>
-                            <select value = {this.state.role} onChange = {this.handleRole}>
-                                <option value ="admin">Admin</option>
-                                <option value = "user">User</option>
-                            </select>
+                <div>
+                    <div className = "addEmployeeContainer">
+                        
+                        <div className = "addEmployee">
+                            <Button variant = "raised" color = "secondary" onClick={this.handleClickOpen}>Add Employee</Button>
                         </div>
-                        <div><input onChange = {this.handlePayRate}  value = {this.state.payrate}/></div>
-                        <div><input onChange = {this.handleBillRate}  value = {this.state.billingrate}/></div>
-                        <div><input onChange = {this.handleEmail}  value = {this.state.email}/></div>
+
                     </div>
-                    <button>Add</button>
+
+                    <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                    >
+                    <DialogTitle id="form-dialog-title">Add Employee</DialogTitle>
+                    <DialogContent>
+
+                        <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="First Name"
+                        fullWidth
+                        onChange = {this.handleFirstName}
+                        value = {this.state.firstname}
+                        />
+
+                        <TextField
+                        margin="dense"
+                        id="name"
+                        label="Last Name"
+                        fullWidth
+                        onChange = {this.handleLastName}
+                        value = {this.state.lastname}
+                        />
+
+                        <FormControl fullWidth>
+                        <InputLabel htmlFor="role-simple">Role</InputLabel>
+                        <Select
+                            value={this.state.role}
+                            onChange={this.handleRole}
+                            inputProps={{
+                            name: 'Role',
+                            }}
+                            fullWidth
+                        >
+                            <MenuItem value="admin">Admin</MenuItem>
+                            <MenuItem value="user">User</MenuItem>
+                        </Select>
+                        </FormControl>
+
+                        <TextField
+                        margin="dense"
+                        id="name"
+                        label="Pay Rate"
+                        fullWidth
+                        value = {this.state.payrate}
+                        onChange = {this.handlePayRate}
+                        />
+
+                        <TextField
+                        margin="dense"
+                        id="name"
+                        label="Bill Rate"
+                        fullWidth
+                        value = {this.state.billingrate}
+                        onChange = {this.handleBillRate}
+                        />
+
+                        <TextField
+                        margin="dense"
+                        id="name"
+                        label="Email Address"
+                        type="email"
+                        fullWidth
+                        value = {this.state.email}
+                        onChange = {this.handleEmail}
+                        />
+
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                        Cancel
+                        </Button>
+                        <Button onClick={this.addEmployee} color="primary">
+                        Add
+                        </Button>
+                    </DialogActions>
+                    </Dialog>
                 </div>
 
                 <div className = "employees">

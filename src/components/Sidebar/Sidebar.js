@@ -62,7 +62,7 @@ class Sidebar extends Component{
 
                     <Divider />
 
-                    <Link to = "clientmanagement" style={{ textDecoration: 'none' }}>
+                    <Link to = "/clientmanagement" style={{ textDecoration: 'none' }}>
                         <ListItem button>
                             <ListItemIcon>
                                 <GroupAdd color = "primary" />

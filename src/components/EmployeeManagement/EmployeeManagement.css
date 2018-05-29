@@ -23,8 +23,29 @@
     padding: 15px;
 }
 
+.addEmployeeContainer{
+    width: 100%;
+    margin-bottom: -15px;
+    padding: 15px;
+}
+
+.addEmployee{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteIcon{
+    cursor: pointer;
+}
+
 .employeeName{
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .employeeTableContainer{
@@ -84,4 +105,8 @@
     background: transparent;
     font-size: 14px;
     outline: none;
+}
+
+.editingButton{
+    width: 50%;
 }
