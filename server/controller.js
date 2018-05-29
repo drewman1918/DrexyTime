@@ -74,5 +74,18 @@ module.exports = {
         const { email, firstname, lastname, billingrate, payrate, role } = req.body;
         req.app.get('db').add_employee([email, firstname, lastname, billingrate, payrate, role])
             .then( () => res.sendStatus(200));
+    },
+
+    deleteProject: (req, res, next) => {
+        const { projectid } = req.params;
+        req.app.get('db').delete_project([projectid])
+            .then( () => res.sendStatus(200));
+    },
+
+    editProject: (req, res, next) => {
+        const { projectid } = req.params;
+        const { name, type, flatfee } = req.body;
+        req.app.get('db').edit_project([projectid, name, type, flatfee])
+            .then( () => res.sendStatus(200));
     }
 }

@@ -91,8 +91,10 @@ app.get('/auth/me', (req, res, next) => {
 })
 
 //Client and Project calls
-app.get('/api/clients', controller.getAllClients)
-app.get('/api/projects/:clientID', controller.getClientProjects)
+app.get('/api/clients', controller.getAllClients);
+app.get('/api/projects/:clientID', controller.getClientProjects);
+app.delete('/api/projects/:projectid', controller.deleteProject);
+app.put('/api/projects/:projectid', controller.editProject);
 
 //Memo calls
 app.post('/api/memos', controller.addMemo);

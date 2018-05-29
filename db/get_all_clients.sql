@@ -1,2 +1,3 @@
 SELECT *
-FROM clients;
+FROM clients
+ORDER BY lastname;

@@ -5,6 +5,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
+import Client from "./Client";
 import "./ClientManagement.css";
 
 class ClientManagement extends Component{
@@ -15,11 +17,21 @@ class ClientManagement extends Component{
             open: false,
             firstname: '',
             lastname: '',
-            email: ''
+            email: '',
+            clients: []
         })
         this.handleFirstName = this.handleFirstName.bind(this);
         this.handleLastName = this.handleLastName.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
+    }
+
+    componentDidMount(){
+        axios.get('/api/clients')
+            .then(res => {
+                this.setState({
+                    clients: res.data
+                })
+            })
     }
 
     handleFirstName(e){
@@ -57,7 +69,13 @@ class ClientManagement extends Component{
 
     
     render(){
-        
+        const Clients = this.state.clients.map(client => {
+            return (
+                <div key = {client.clientid}>
+                    <Client firstname = {client.firstname} lastname = {client.lastname} clientid = {client.clientid} email = {client.email}/>
+                </div>
+            )
+        })
 
 
         return(
@@ -122,6 +140,10 @@ class ClientManagement extends Component{
                             </Button>
                         </DialogActions>
                         </Dialog>
+                </div>
+
+                <div className = "clients">
+                    {Clients}
                 </div>
 
             </div>
