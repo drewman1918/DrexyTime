@@ -4,6 +4,7 @@ import './MyTime.css';
 import Today from './Today';
 import TwoWeek from './TwoWeek';
 
+
 class MyTime extends Component{
     constructor(){
         super()
@@ -43,13 +44,13 @@ class MyTime extends Component{
 
                         <Link to = "/mytime/day" style={{ textDecoration: 'none', color: "#0097a7", width: "100%" }}>
                             <div className = {`todayNav ${this.state.today}`} onClick = {this.clickToday}>
-                                <h3>Day</h3>
+                                <h3>Single Day</h3>
                             </div>
                         </Link>
 
                         <Link to = "/mytime/week" style={{ textDecoration: 'none', color: "#0097a7", width: "100%" }}>
                             <div className = {`twoWeekNav ${this.state.twoWeek}`} onClick = {this.clickTwoWeek}>
-                                <h3>Week</h3>
+                                <h3>Two Weeks</h3>
                             </div>
                         </Link>
 

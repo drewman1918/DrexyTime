@@ -106,5 +106,25 @@ module.exports = {
         const { clientid, name, type, flatfee} = req.body;
         req.app.get('db').add_project([clientid, name, type, flatfee])
             .then( () => res.sendStatus(200))
+    },
+
+    deleteClient: (req, res, next) => {
+        const { clientid } = req.params;
+        req.app.get('db').delete_client([clientid])
+            .then( () => res.sendStatus(200));
+    },
+
+    getTwoWeekMemos: (req, res, next) => {
+        const { employeeid } = req.user;
+        const { one, fourteen } = req.params;
+        req.app.get('db').get_two_week_memos([employeeid, one, fourteen])
+            .then( memos => res.status(200).send(memos) )
+    },
+
+    getTwoWeekTotals: (req, res, next) => {
+        const { employeeid } = req.user;
+        const { one, fourteen } = req.params;
+        req.app.get('db').get_two_week_totals([employeeid, one, fourteen])
+            .then( totals => res.status(200).send(totals) )
     }
 }

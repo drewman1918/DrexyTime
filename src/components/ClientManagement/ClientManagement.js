@@ -86,7 +86,7 @@ class ClientManagement extends Component{
         const Clients = this.state.clients.map(client => {
             return (
                 <div key = {client.clientid}>
-                    <Client firstname = {client.firstname} lastname = {client.lastname} clientid = {client.clientid} email = {client.email}/>
+                    <Client getClientsFn = {this.getClients} firstname = {client.firstname} lastname = {client.lastname} clientid = {client.clientid} email = {client.email}/>
                 </div>
             )
         })
@@ -112,7 +112,7 @@ class ClientManagement extends Component{
                         onClose={this.handleClose}
                         aria-labelledby="form-dialog-title"
                         >
-                        <DialogTitle id="form-dialog-title">Add Employee</DialogTitle>
+                        <DialogTitle id="form-dialog-title">Add Client</DialogTitle>
                         <DialogContent>
 
                             <TextField

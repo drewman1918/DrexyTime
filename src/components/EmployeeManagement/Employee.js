@@ -87,7 +87,9 @@ export default class Employee extends Component{
     updateEmployee(){
         axios.put(`/api/employees/${this.props.employeeInfo.employeeid}`, {firstname: this.state.firstname, lastname: this.state.lastname, role: this.state.role, payrate: this.state.payrate, billingrate: this.state.billingrate, email: this.state.email})
             .then(() => {
-                this.editingFalse();
+                this.setState({
+                    editing: false
+                })
             })
     }
 

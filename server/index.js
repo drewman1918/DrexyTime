@@ -94,6 +94,7 @@ app.get('/auth/me', (req, res, next) => {
 app.get('/api/clients', controller.getAllClients);
 app.post('/api/clients', controller.addClient);
 app.put('/api/clients/:clientid', controller.updateEmail);
+app.delete('/api/clients/:clientid', controller.deleteClient);
 
 //Project Calls
 app.get('/api/projects/:clientID', controller.getClientProjects);
@@ -106,6 +107,8 @@ app.post('/api/memos', controller.addMemo);
 app.get('/api/memos/:employeeid/:date', controller.getUserMemos);
 app.delete('/api/memos/:memoid', controller.deleteMemo);
 app.put('/api/memos/:memoid', controller.editMemo);
+app.get('/api/twoweekmemos/:one/:fourteen', controller.getTwoWeekMemos);
+app.get('/api/twoweektotals/:one/:fourteen', controller.getTwoWeekTotals);
 
 //Employee calls
 app.get('/api/employees', controller.getEmployees);

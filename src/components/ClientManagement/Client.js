@@ -95,7 +95,10 @@ export default class Client extends Component {
 
     handleClose = () => {
     this.setState({
-        open: false
+        open: false,
+        name: '',
+        type:'',
+        flatfee: ''
     });
     }
 
@@ -107,7 +110,19 @@ export default class Client extends Component {
     }
 
     addProject = () => {
-        axios.post('/api/projects', {clientid: this.props.clientid, name: this.state.name, type: this.state.type, flatfee: this.state.flatfee})
+        if(this.state.flatfee === ''){
+            axios.post('/api/projects', {clientid: this.props.clientid, name: this.state.name, type: this.state.type, flatfee: null})
+                .then( () => {
+                    this.getProjects()
+                    this.setState({
+                        name: '',
+                        type:'',
+                        flatfee: '',
+                        open: false
+                    })
+                })
+        }else {
+            axios.post('/api/projects', {clientid: this.props.clientid, name: this.state.name, type: this.state.type, flatfee: this.state.flatfee})
             .then( () => {
                 this.getProjects()
                 this.setState({
@@ -116,6 +131,14 @@ export default class Client extends Component {
                     flatfee: '',
                     open: false
                 })
+            })  
+        }
+    }
+
+    deleteClient = () => {
+        axios.delete(`/api/clients/${this.props.clientid}`)
+            .then ( () => {
+                this.props.getClientsFn();
             })
     }
 
@@ -134,7 +157,7 @@ export default class Client extends Component {
 
                 <div className = "clientName">
                     <h2>{this.state.lastname}, {this.state.firstname}</h2>
-                    <div className = "deleteIcon"><Tooltip title = "Delete Client"><ClearIcon onClick = {this.deleteEmployee}/></Tooltip></div>
+                    <div className = "deleteIcon"><Tooltip title = "Delete Client"><ClearIcon onClick = {this.deleteClient} /></Tooltip></div>
                 </div>
 
                 <div className = "clientInfo">
@@ -208,16 +231,29 @@ export default class Client extends Component {
                                 <MenuItem value="none">Non-Billing</MenuItem>
                             </Select>
                             </FormControl>
-
+                            
+                            {(this.state.type === "flat") ? 
                             <TextField
                             margin="dense"
-                            id="name"
-                            label="Flat Fee Amount"
+                            id="fee"
+                            label="Monthly Fee"
                             type="number"
                             fullWidth
                             onChange = {this.handleFlatFee}
                             value = {this.state.flatfee}
                             />
+                            :
+                            <TextField
+                            margin="dense"
+                            id="fee"
+                            label="Monthly Fee"
+                            type="number"
+                            fullWidth
+                            disabled
+                            onChange = {this.handleFlatFee}
+                            value = {this.state.flatfee}
+                            />
+                            }
 
                         </DialogContent>
                         <DialogActions>
