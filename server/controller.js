@@ -126,5 +126,11 @@ module.exports = {
         const { one, fourteen } = req.params;
         req.app.get('db').get_two_week_totals([employeeid, one, fourteen])
             .then( totals => res.status(200).send(totals) )
+    },
+
+    getInvoiceMemos: (req, res, next) => {
+        const { clientid, startDate, endDate } = req.params;
+        req.app.get('db').get_invoice_memos([clientid, startDate, endDate])
+            .then( memos => res.status(200).send(memos) )
     }
 }

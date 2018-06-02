@@ -148,9 +148,8 @@ class Timer extends Component{
         return(
             <div className = "timerContainer">
                 <div className = "timer">
-                    <Select className = "timerInput" options = {clientOptions} placeholder = "Select Client" onChange = {this.handleClient}/>
-                    <Select className = "timerInput" options = {projectOptions} placeholder = "Select Project" onChange = {this.handleProject}/>
-                    {/* <input className = "timerInput date" type = "text" placeholder = "Choose Date"/> */}
+                    <Select styles = { {control: styles => ({...styles, backgroundColor: 'white'})} } className = "timerInput" options = {clientOptions} placeholder = "Select Client" onChange = {this.handleClient}/>
+                    <Select styles = { {control: styles => ({...styles, backgroundColor: 'white'})} } className = "timerInput" options = {projectOptions} placeholder = "Select Project" onChange = {this.handleProject}/>
                     <DayPickerInput 
                         inputProps={{ style: { width: "99%", border: 0, marginBottom: "10px", fontSize: "16px", height: "38px", textAlign: "center" } }} 
                         onDayChange={this.handleDayChange} 

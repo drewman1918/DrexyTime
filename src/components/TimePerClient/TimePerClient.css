@@ -1,0 +1,151 @@
+.timePerClientContainer{
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 30px;
+}
+
+.clientInvoicingContainer{
+    padding: 0px 15px;
+}
+
+.parameters{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.selectContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0px 10px;
+}
+
+.clientDatePickers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom{
+    margin-top: 15px;
+}
+
+.clientFetchButtonContainer{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0px 10px;
+}
+
+.clientFetchButton{
+    width: 100%;
+}
+
+.clientSelector{
+    width: 100%;
+}
+
+.invoice{
+    border: 1px solid rgba(0,0,0,0.3);
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.invoiceRow1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    margin-top: 40px;
+}
+
+.companyLogo{
+    display: flex;
+    justify-content: center;
+}
+
+.invoiceAndInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoiceNumber{
+    display: flex;
+    margin-top: 10px;
+}
+
+.invoiceNumber > input{
+    margin-left: 10px;
+}
+
+.invoiceAndInfo > h2{
+    font-size: 60px;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+}
+
+.invoiceAndInfo > h3 {
+    margin-top: 10px;
+}
+
+.invoiceData{
+    margin-top: 50px;
+}
+
+.invoiceHeaderRow{
+    display: grid;
+    grid-template-columns: 4fr 1.3fr 1.3fr repeat(3, 1fr);
+}
+
+.invoiceHeader{
+    border: 1px solid rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 7px 5px;
+    background: #b71c1c;
+    color: white;
+}
+
+.invoiceDataRow{
+    display: grid;
+    grid-template-columns: 4fr 1.3fr 1.3fr repeat(3, 1fr);
+}
+
+.invoiceDataItem{
+    padding: 7px 5px;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+.invoiceEmployee, .invoiceDate, .invoiceHours, .invoiceRate, .invoiceTotal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invoiceTotalsRow{
+    display: grid;
+    grid-template-columns: 4fr 1.3fr 1.3fr 1fr 1fr 1fr;
+    margin-bottom: 50px;
+}
+
+.invoiceTotalSum{
+    border: 1px solid rgba(0,0,0,0.3);
+    padding: 7px 5px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #b71c1c;
+    color: white;
+}
+
+.invoiceTotalTitle{
+    padding: 7px 10px;
+    text-align: right;
+    text-transform: uppercase;
+}

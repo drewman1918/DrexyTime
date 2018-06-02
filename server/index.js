@@ -109,6 +109,7 @@ app.delete('/api/memos/:memoid', controller.deleteMemo);
 app.put('/api/memos/:memoid', controller.editMemo);
 app.get('/api/twoweekmemos/:one/:fourteen', controller.getTwoWeekMemos);
 app.get('/api/twoweektotals/:one/:fourteen', controller.getTwoWeekTotals);
+app.get('/api/invoicememos/:clientid/:startDate/:endDate', controller.getInvoiceMemos);
 
 //Employee calls
 app.get('/api/employees', controller.getEmployees);
