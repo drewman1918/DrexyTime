@@ -126,7 +126,7 @@ class TimePerEmployee extends Component{
 
                 <div className = "myTime">
                     <div className = "titleContainer">
-                        <h2><span className = "accent">Employee</span>Statistics</h2>
+                        <h2><span className = "accent">User</span>Statistics</h2>
                     </div>
                 </div>
 

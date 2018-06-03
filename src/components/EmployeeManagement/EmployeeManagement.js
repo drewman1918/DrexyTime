@@ -124,7 +124,7 @@ class EmployeeManagement extends Component{
         return(
             <div className = "employeeManagementContainer">
                 <div className = "EMTitleContainer">
-                    <h2><span className = "accent">Employee</span>Management</h2>
+                    <h2><span className = "accent">User</span>Management</h2>
                 </div>
 
                 <div>

@@ -40,6 +40,7 @@ class TwoWeek extends Component{
     
     componentDidMount(){
         this.setToday();
+        this.props.setBar();
     }
 
     componentDidUpdate(prevProps, prevState){

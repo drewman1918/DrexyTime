@@ -57,4 +57,7 @@ table {
 	margin-left: 300px;
 	margin-top: 64px;
 	padding: 10px;
+	background: #babcba;
+	/* background: rgb(121, 121, 124, 0.85); */
+	min-height: calc( 100vh - 64px );
 }

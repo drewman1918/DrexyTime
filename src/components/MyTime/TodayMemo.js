@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import "./TodayMemo.css";
-import DeleteIcon from '@material-ui/icons/Delete';
+import ClearIcon from '@material-ui/icons/Clear';
 import DoneIcon from '@material-ui/icons/Done';
 import Tooltip from '@material-ui/core/Tooltip';
 import axios from 'axios';
@@ -87,6 +87,7 @@ export default class TodayMemo extends Component {
                 
                 <div className = "memoClient">
                     <h3>{this.state.client}</h3>
+                    <Tooltip title = "Delete Entry"><ClearIcon className = "deleteIcon" onClick = {this.deleteMemo}/></Tooltip>
                 </div>
 
                 <div className = "bottomRow">
@@ -121,7 +122,6 @@ export default class TodayMemo extends Component {
                         :
                         null
                         }
-                        <Tooltip title = "Delete Entry"><DeleteIcon className = "deleteIcon" onClick = {this.deleteMemo}/></Tooltip>
                     </div>
 
                 </div>

@@ -8,12 +8,25 @@ import Divider from '@material-ui/core/Divider';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import GroupAdd from '@material-ui/icons/GroupAdd';
 import ShowChart from '@material-ui/icons/ShowChart';
-import InsertChart from '@material-ui/icons/InsertChart';
+import MonetizationOn from '@material-ui/icons/MonetizationOn';
 import Timer from './Timer/Timer';
 import { Link } from 'react-router-dom';
 
 
 class Sidebar extends Component{
+    constructor(){
+        super()
+
+        this.state = {
+            value: 0
+        }
+    }
+
+
+    handleChange = (event, value) => {
+        this.setState({ value });
+      };
+    
     render(){
         return(
             <div className = "sidebar">
@@ -29,34 +42,34 @@ class Sidebar extends Component{
 
                     <Divider />
 
-                    <Link to = "/employeestatistics" style={{ textDecoration: 'none' }}>
+                    <Link to = "/invoicing" style={{ textDecoration: 'none' }}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <MonetizationOn color = "primary" />
+                            </ListItemIcon>
+                            <ListItemText primary="Invoicing" />
+                        </ListItem>
+                    </Link>
+
+                    <Divider />
+
+                    <Link to = "/userstatistics" style={{ textDecoration: 'none' }}>
                         <ListItem button>
                             <ListItemIcon>
                                 <ShowChart color = "primary"/>
                             </ListItemIcon>
-                            <ListItemText primary= "Employee Statistics"/>
+                            <ListItemText primary= "User Statistics"/>
                         </ListItem>
                     </Link>
 
                     <Divider />
 
-                    <Link to = "/clientstatistics" style={{ textDecoration: 'none' }}>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <InsertChart color = "primary" />
-                            </ListItemIcon>
-                            <ListItemText primary="Client Statistics" />
-                        </ListItem>
-                    </Link>
-
-                    <Divider />
-
-                    <Link to = "/employeemanagement" style={{ textDecoration: 'none' }}>
+                    <Link to = "/usermanagement" style={{ textDecoration: 'none' }}>
                         <ListItem button>
                             <ListItemIcon>
                                 <PersonAdd color = "primary" />
                             </ListItemIcon>
-                            <ListItemText primary="Employee Management"/>
+                            <ListItemText primary="User Management"/>
                         </ListItem>
                     </Link>
 

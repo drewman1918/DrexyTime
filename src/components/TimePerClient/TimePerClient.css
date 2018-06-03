@@ -5,6 +5,7 @@
     margin-top: 10px;
     font-family: 'Roboto', sans-serif;
     padding-bottom: 30px;
+    background: white;
 }
 
 .clientInvoicingContainer{
@@ -108,9 +109,9 @@
 .invoiceHeader{
     border: 1px solid rgba(0,0,0,0.3);
     text-align: center;
-    padding: 7px 5px;
-    background: #b71c1c;
-    color: white;
+    padding: 4px 5px;
+    background: #0096a5;
+    border-bottom: 3px solid #b71c1c;
 }
 
 .invoiceDataRow{

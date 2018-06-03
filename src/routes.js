@@ -13,10 +13,10 @@ const routes = (
             <Route path = "/mytime" component = {MyTime}/>
             <Route path = "/myaccount" component = {MyAccount}/>
             <Route path = "/mycompany" component = {MyCompany}/>
-            <Route path = "/clientstatistics" component = {TimePerClient}/>
-            <Route path = "/employeestatistics" component = {TimePerEmployee}/>
+            <Route path = "/invoicing" component = {TimePerClient}/>
+            <Route path = "/userstatistics" component = {TimePerEmployee}/>
             <Route path = "/clientmanagement" component = {ClientManagement}/>
-            <Route path = "/employeemanagement" component = {EmployeeManagement}/>
+            <Route path = "/usermanagement" component = {EmployeeManagement}/>
         </Switch>
 )
 

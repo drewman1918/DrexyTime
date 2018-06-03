@@ -23,6 +23,7 @@ class Today extends Component{
         if(this.props.employeeid){
             this.getTodayMemos();
         }
+        this.props.setBar();
     }
 
     componentDidUpdate(prevProps){
