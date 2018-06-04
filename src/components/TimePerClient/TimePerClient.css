@@ -71,6 +71,11 @@
     justify-content: center;
 }
 
+.companyLogo > img {
+    max-width: 300px;
+    max-height: 150px;
+}
+
 .invoiceAndInfo{
     display: flex;
     flex-direction: column;
@@ -110,8 +115,8 @@
     border: 1px solid rgba(0,0,0,0.3);
     text-align: center;
     padding: 4px 5px;
-    background: #0096a5;
-    border-bottom: 3px solid #b71c1c;
+    background: #f5f5f5;
+    border-bottom: 3px solid #0096a5;
 }
 
 .invoiceDataRow{

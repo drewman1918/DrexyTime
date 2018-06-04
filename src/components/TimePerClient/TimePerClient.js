@@ -18,7 +18,8 @@ class TimePerClient extends Component{
             endDate: new Date(),
             memos: [],
             invoiceNumber: '',
-            clientName: ''
+            clientName: '',
+            logo: ''
         }
         this.handleClient = this.handleClient.bind(this);
         this.handleDayChangeEnd = this.handleDayChangeEnd.bind(this);
@@ -41,6 +42,12 @@ class TimePerClient extends Component{
             .then( (res) => {
                 this.props.getAllClients(res.data)
             })
+        axios.get('/api/companylogo')
+            .then(res => {
+                this.setState({
+                    logo: res.data[0].logo
+                })
+        })
     }
 
     getMemos(){
@@ -86,8 +93,6 @@ class TimePerClient extends Component{
         });
 
         const today = new Date().toDateString().slice(4, 15);
-
-        const companyLogo = "https://s3-us-west-1.amazonaws.com/drexytime-company-logos/logo.png";
 
         const memos = this.state.memos.map( memo => {
             return(
@@ -172,7 +177,7 @@ class TimePerClient extends Component{
                             </div>
 
                             <div className = "companyLogo">
-                                <img src = {companyLogo} alt = "company Logo" />
+                                <img src = {this.state.logo} alt = "company Logo" />
                             </div>
                         
                         </div>

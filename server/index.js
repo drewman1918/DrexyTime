@@ -6,7 +6,8 @@ const express = require('express')
       , massive = require('massive')
       , controller = require('./controller')
       , bodyParser = require('body-parser')
-      , nodemailer = require('nodemailer');
+      , nodemailer = require('nodemailer')
+      , S3 = require('./S3.js');
 
 const {
     SERVER_PORT,
@@ -22,6 +23,8 @@ const {
 
 const app = express();
 app.use(bodyParser.json());
+//This line should enable larger pictures to be uploaded, but it is not working.
+// app.use(bodyParser.urlencoded({extended:true, limit:'50mb'}))();
 
 massive(CONNECTION_STRING).then( (db) => {
     app.set('db', db);
@@ -74,7 +77,8 @@ app.use( (req, res, next) => {
         lastname: "bloomfield",
         payrate: 25,
         profilepicture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-        role: "admin"
+        role: "admin",
+        companyid: 1
     }
     next()
 })
@@ -120,6 +124,10 @@ app.post('/api/employees', controller.addEmployee);
 //Time by employee
 app.get('/api/maindata/:startDate/:endDate', controller.getMainData);
 
+//Company Logo
+app.get('/api/companylogo', controller.getCompanyLogo);
+app.put('/api/companylogo', controller.updateCompanyLogo);
+
 // Nodemailer
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -148,5 +156,8 @@ app.post('/api/email', (req, res, next) => {
     })
     res.sendStatus(201);
 })
+
+//S3 -- See S3.js for actual code.
+S3(app)
 
 app.listen(SERVER_PORT, () => console.log( `You shall not pass on port: ${SERVER_PORT}` ))

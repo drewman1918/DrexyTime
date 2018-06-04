@@ -132,5 +132,18 @@ module.exports = {
         const { clientid, startDate, endDate } = req.params;
         req.app.get('db').get_invoice_memos([clientid, startDate, endDate])
             .then( memos => res.status(200).send(memos) )
+    },
+
+    getCompanyLogo: (req, res, next) => {
+        const { companyid } = req.user;
+        req.app.get('db').get_company_logo([companyid])
+            .then( logo => res.status(200).send(logo))
+    },
+
+    updateCompanyLogo: (req, res, next) => {
+        const { logoURL } = req.body;
+        const { companyid } = req.user;
+        req.app.get('db').update_company_logo([logoURL, companyid])
+            .then( () => res.sendStatus(200))
     }
 }

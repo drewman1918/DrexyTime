@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Link } from 'react-router-dom';
 import "./MyAccount.css";
 
 class MyAccount extends Component {
@@ -82,6 +83,10 @@ class MyAccount extends Component {
                     </div>
 
                     <div className = "myAccountInfo">
+                        <div className = "myCompanyLink">
+                            <Link to = "/mycompany" style={{ textDecoration: 'none' }}><Button variant = "outlined" color = "secondary">My Company</Button></Link>
+                        </div>
+
                         <div className = "profilePictureContainer">
                             <Tooltip title = "Update image on your gmail account!"><img src = {this.props.picture} alt = "profileImg"/></Tooltip>
                         </div>

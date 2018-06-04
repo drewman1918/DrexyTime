@@ -9,6 +9,9 @@
     margin: 30px;
     margin-bottom: 0px;
     border-bottom: 1px solid rgba(0,0,0,0.5);
+    background: yellow;
+    position: sticky;
+    top: 100px;
 }
 
 .twoWeekRow{
