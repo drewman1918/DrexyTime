@@ -4,6 +4,12 @@
     padding-top: 67px;
     position: fixed;
     border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.menu{
+    height: calc( 100vh - 529px );
+    min-height: 42px;
     overflow: auto;
+    
 }
 

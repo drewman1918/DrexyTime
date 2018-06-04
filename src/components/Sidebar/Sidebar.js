@@ -32,7 +32,7 @@ class Sidebar extends Component{
             <div className = "sidebar">
                 <div className = "menu">
                     <Link to = "/mytime/day" style={{ textDecoration: 'none' }}>
-                        <ListItem button>
+                        <ListItem dense button>
                             <ListItemIcon>
                                 <Alarm color = "primary"/>
                             </ListItemIcon>
@@ -43,7 +43,7 @@ class Sidebar extends Component{
                     <Divider />
 
                     <Link to = "/invoicing" style={{ textDecoration: 'none' }}>
-                        <ListItem button>
+                        <ListItem dense button>
                             <ListItemIcon>
                                 <MonetizationOn color = "primary" />
                             </ListItemIcon>
@@ -54,7 +54,7 @@ class Sidebar extends Component{
                     <Divider />
 
                     <Link to = "/userstatistics" style={{ textDecoration: 'none' }}>
-                        <ListItem button>
+                        <ListItem dense button>
                             <ListItemIcon>
                                 <ShowChart color = "primary"/>
                             </ListItemIcon>
@@ -65,7 +65,7 @@ class Sidebar extends Component{
                     <Divider />
 
                     <Link to = "/usermanagement" style={{ textDecoration: 'none' }}>
-                        <ListItem button>
+                        <ListItem dense button>
                             <ListItemIcon>
                                 <PersonAdd color = "primary" />
                             </ListItemIcon>
@@ -76,7 +76,7 @@ class Sidebar extends Component{
                     <Divider />
 
                     <Link to = "/clientmanagement" style={{ textDecoration: 'none' }}>
-                        <ListItem button>
+                        <ListItem dense button>
                             <ListItemIcon>
                                 <GroupAdd color = "primary" />
                             </ListItemIcon>

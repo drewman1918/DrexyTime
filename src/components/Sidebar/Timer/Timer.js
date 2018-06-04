@@ -9,6 +9,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { getTodayMemos } from './../../../ducks/memoReducer';
 import Alarm from '@material-ui/icons/Alarm';
+import PauseCircle from '@material-ui/icons/PauseCircleOutline';
 
 class Timer extends Component{
     constructor(){
@@ -19,19 +20,19 @@ class Timer extends Component{
             projectID1: '',
             hours1: '',
             timing1: 'false',
-            date1: '',
+            date1: new Date(),
             memo1: '',
             clientID2: '',
             projectID2: '',
             hours2: '',
             timing2: 'false',
-            date2: '',
+            date2: new Date(),
             memo2: '',
             clientID3: '',
             projectID3: '',
             hours3: '',
             timing3: 'false',
-            date3: '',
+            date3: new Date(),
             memo3: '',
             active: 1
         }
@@ -436,9 +437,27 @@ class Timer extends Component{
 
                     <div className = "timerNavigation">
                         
-                        <div onClick = {this.setActive1} className = {(this.state.active === 1) ? "timerNavigation1 activeTimer" : "timerNavigation1" }><Alarm color = {(this.state.active === 1) ? "primary" : "disabled" }/></div>
-                        <div onClick = {this.setActive2} className = {(this.state.active === 2) ? "timerNavigation2 activeTimer" : "timerNavigation2" }><Alarm color = {(this.state.active === 2) ? "primary" : "disabled" }/></div>
-                        <div onClick = {this.setActive3} className = {(this.state.active === 3) ? "timerNavigation3 activeTimer" : "timerNavigation3" }><Alarm color = {(this.state.active === 3) ? "primary" : "disabled" }/></div>
+                        <div onClick = {this.setActive1} className = {(this.state.active === 1) ? "timerNavigation1 activeTimer" : "timerNavigation1" }>
+                            { (this.state.timing1 === 'paused') ?
+                            <PauseCircle color = {(this.state.active === 1) ? "primary" : "disabled" }/>
+                            :
+                            <Alarm color = {(this.state.active === 1) ? "primary" : "disabled" }/>
+                            }
+                        </div>
+                        <div onClick = {this.setActive2} className = {(this.state.active === 2) ? "timerNavigation2 activeTimer" : "timerNavigation2" }>
+                            { (this.state.timing2 === 'paused') ?
+                            <PauseCircle color = {(this.state.active === 2) ? "primary" : "disabled" }/>
+                            :
+                            <Alarm color = {(this.state.active === 2) ? "primary" : "disabled" }/>
+                            }
+                        </div>
+                        <div onClick = {this.setActive3} className = {(this.state.active === 3) ? "timerNavigation3 activeTimer" : "timerNavigation3" }>
+                            { (this.state.timing3 === 'paused') ?
+                            <PauseCircle color = {(this.state.active === 3) ? "primary" : "disabled" }/>
+                            :
+                            <Alarm color = {(this.state.active === 3) ? "primary" : "disabled" }/>
+                            }
+                        </div>
                     
                     </div>
 
@@ -449,7 +468,8 @@ class Timer extends Component{
                         <DayPickerInput 
                             inputProps={{ style: { width: "99%", border: "1px solid #0097a7", marginBottom: "10px", fontSize: "16px", height: "38px", textAlign: "center" } }} 
                             onDayChange={this.handleDayChange1} 
-                            placeholder = "Choose Date"/>
+                            placeholder = "Choose Date"
+                            value = {this.state.date1}/>
                     
                         <div className = "trackRow">
 
@@ -458,7 +478,7 @@ class Timer extends Component{
                             <input className = "timerHours" type = "number" placeholder = "Hours" value = {this.state.hours1} onChange = {this.handleHours1} step = "0.01"/>
                             :
                             (this.state.timing1 === 'true') ?
-                            <input disabled = {true} className = "timerHours" type = "number" placeholder = "Timing..."  value = {this.state.hours1} step = "0.01"/>
+                            <input disabled = {true} className = "timerHours" type = "number" placeholder = "Timing..."  value = "Timing..." step = "0.01"/>
                             :
                             <input className = "timerHours" type = "number" placeholder = "Hours" value = {this.state.hours1} onChange = {this.handleHours1} step = "0.01"/>
                             }
@@ -476,7 +496,11 @@ class Timer extends Component{
                         </div>
 
                         <textarea value = {this.state.memo1} className = "memo" placeholder = "Memo" onChange = {this.handleMemo1}/>
+                        { (this.state.timing1 === 'true' ) ? 
+                        <Button onClick = {this.submitTime1} disabled variant = "raised" color = "primary">Submit</Button>
+                        :
                         <Button onClick = {this.submitTime1} variant = "raised" color = "primary">Submit</Button>
+                        }
                     </div>
 
                     {/**********SECOND TIMER**********/}
@@ -486,7 +510,8 @@ class Timer extends Component{
                         <DayPickerInput 
                             inputProps={{ style: { width: "99%", border: "1px solid #0097a7", marginBottom: "10px", fontSize: "16px", height: "38px", textAlign: "center" } }} 
                             onDayChange={this.handleDayChange2} 
-                            placeholder = "Choose Date"/>
+                            placeholder = "Choose Date"
+                            value = {this.state.date2}/>
                     
                         <div className = "trackRow">
 
@@ -495,7 +520,7 @@ class Timer extends Component{
                             <input className = "timerHours" type = "number" placeholder = "Hours" value = {this.state.hours2} onChange = {this.handleHours2} step = "0.01"/>
                             :
                             (this.state.timing2 === 'true') ?
-                            <input disabled = {true} className = "timerHours" type = "number" placeholder = "Timing..."  value = {this.state.hours2} step = "0.01"/>
+                            <input disabled = {true} className = "timerHours" type = "number" placeholder = "Timing..."  value = "Timing..." step = "0.01"/>
                             :
                             <input className = "timerHours" type = "number" placeholder = "Hours" value = {this.state.hours2} onChange = {this.handleHours2} step = "0.01"/>
                             }
@@ -513,7 +538,11 @@ class Timer extends Component{
                         </div>
 
                         <textarea value = {this.state.memo2} className = "memo" placeholder = "Memo" onChange = {this.handleMemo2}/>
+                        { (this.state.timing2 === 'true' ) ? 
+                        <Button onClick = {this.submitTime2} disabled variant = "raised" color = "primary">Submit</Button>
+                        :
                         <Button onClick = {this.submitTime2} variant = "raised" color = "primary">Submit</Button>
+                        }
                     </div>
 
                     {/**********THIRD TIMER**********/}
@@ -523,7 +552,8 @@ class Timer extends Component{
                         <DayPickerInput 
                             inputProps={{ style: { width: "99%", border: "1px solid #0097a7", marginBottom: "10px", fontSize: "16px", height: "38px", textAlign: "center" } }} 
                             onDayChange={this.handleDayChange3} 
-                            placeholder = "Choose Date"/>
+                            placeholder = "Choose Date"
+                            value = {this.state.date3}/>
                     
                         <div className = "trackRow">
 
@@ -532,7 +562,7 @@ class Timer extends Component{
                             <input className = "timerHours" type = "number" placeholder = "Hours" value = {this.state.hours3} onChange = {this.handleHours3} step = "0.01"/>
                             :
                             (this.state.timing3 === 'true') ?
-                            <input disabled = {true} className = "timerHours" type = "number" placeholder = "Timing..."  value = {this.state.hours3} step = "0.01"/>
+                            <input disabled = {true} className = "timerHours" type = "number" placeholder = "Timing..."  value = "Timing..." step = "0.01"/>
                             :
                             <input className = "timerHours" type = "number" placeholder = "Hours" value = {this.state.hours3} onChange = {this.handleHours3} step = "0.01"/>
                             }
@@ -550,7 +580,11 @@ class Timer extends Component{
                         </div>
 
                         <textarea value = {this.state.memo3} className = "memo" placeholder = "Memo" onChange = {this.handleMemo3}/>
+                        { (this.state.timing3 === 'true' ) ? 
+                        <Button onClick = {this.submitTime3} disabled variant = "raised" color = "primary">Submit</Button>
+                        :
                         <Button onClick = {this.submitTime3} variant = "raised" color = "primary">Submit</Button>
+                        }
                     </div>
                 </div>
             </div>

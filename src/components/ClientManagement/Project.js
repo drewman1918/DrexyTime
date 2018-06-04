@@ -103,7 +103,7 @@ export default class Project extends Component{
                 
                 <div className = "projectFee bottom last">
 
-                    {(this.state.type == 'flat') ?
+                    {(this.state.type === 'flat') ?
                     <input onClick = {this.editingTrue} onChange = {this.handleFlatFee} value = {this.state.flatfee || ''}/>
                     :
                     <input value = '' disabled = {true} placeholder = "N/A"/>

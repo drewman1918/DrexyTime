@@ -5,12 +5,12 @@
     font-size: 30px;
     text-align: center;
     color: #b71c1c;
-    font-family: 'Lobster', cursive;
+    font-family: 'Lobster';
     margin: 10px 0px;
   }
   
   .loginTitle > span{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
     color: #006876;
   }
 

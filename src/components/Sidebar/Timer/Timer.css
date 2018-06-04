@@ -2,20 +2,23 @@
 
 .timerContainer{
     width: 100%;
-    height: calc( 100vh - 307px);
+    height: 462px;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .timer{
-    width: 100%;
+    width: 264px;
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
     border: 3px solid #0097a7;
     background: white;
     padding: 10px;
     border-radius: 10px;
-    margin-bottom: 10px;
+    position: fixed;
 }
 
 .timerSelectContainer{
