@@ -97,7 +97,7 @@ class TimePerClient extends Component{
         const memos = this.state.memos.map( memo => {
             return(
                 <div key = {memo.memoid}>
-                    <InvoiceRow data = {memo}/>
+                    <InvoiceRow getMemosFn = {this.getMemos} data = {memo}/>
                 </div>
             )
         })

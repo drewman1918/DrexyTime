@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import './TimePerClient.css';
+import Tooltip from '@material-ui/core/Tooltip';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import { Button } from '@material-ui/core';
+import axios from 'axios';
+import './TimePerClient.css';
+
 
 export default class InvoiceRow extends Component {
     constructor(){
@@ -27,9 +25,13 @@ export default class InvoiceRow extends Component {
             projectid: '',
             employeeid: '',
             clientid: '',
+            employees: [],
             open: false
         }
         this.handleClickOpen = this.handleClickOpen.bind(this);
+        this.handleHours = this.handleHours.bind(this);
+        this.updateMemo = this.updateMemo.bind(this);
+        this.deleteMemo = this.deleteMemo.bind(this);
     }
 
     componentDidMount(){
@@ -45,8 +47,26 @@ export default class InvoiceRow extends Component {
             memoid: data.memoid,
             projectid: data.projectid,
             employeeid: data.employeeid,
-            clientid: data.clientid
+            clientid: data.clientid,
         })
+        this.getEmployees();
+    }
+
+    getEmployees(){
+        axios.get('/api/employees')
+            .then( res => {
+                this.setState({
+                    employees: res.data
+                })
+            });
+    }
+
+    deleteMemo(){
+        axios.delete(`/api/memos/${this.state.memoid}`)
+            .then( () => {
+                this.handleClose();
+                this.props.getMemosFn();
+            })
     }
 
     handleClickOpen = () => {
@@ -60,21 +80,56 @@ export default class InvoiceRow extends Component {
         open: false,
     });
     }
+
+    handleMemo = (e) => {
+        this.setState({
+            memo: e.target.value
+        })
+    }
+
+    handleEmployee = (e) => {
+        const employee = this.state.employees.filter( employee => employee.employeeid == e.target.value)
+        const { firstname, lastname } = employee[0]
+        
+        this.setState({
+            employeeid: e.target.value,
+            employeeFirstName: firstname,
+            employeeLastName: lastname
+        });
+    }
+
+    handleHours(e){
+        this.setState({
+            hours: e.target.value
+        })
+    }
+
+    updateMemo(){
+        axios.put(`/api/invoicememos/${this.state.memoid}`, {memo: this.state.memo, employeeid: this.state.employeeid, hours: this.state.hours})
+            .then( () => {
+                this.handleClose();
+            })
+    }
     
     render(){
-
         const displayDate = this.state.date.slice(4, 15);
+
+        const employeeOptions = this.state.employees.map( employee => {
+            return(
+                    <option key = {employee.employeeid} value = {employee.employeeid}>{employee.firstname} {employee.lastname}</option>
+            )
+        })
 
         return(
             <div onDoubleClick = { this.handleClickOpen }className = "invoiceDataRow">
-                            
-                <div className = "invoiceMemo invoiceDataItem invoiceMemo">{this.state.memo}</div>
 
-                <div className = "invoiceEmployee invoiceDataItem invoiceEmployee">{ `${this.state.employeeFirstName} ${this.state.employeeLastName}` }</div>
+                <Tooltip title = "Double click to edit!"><div className = "invoiceMemo invoiceDataItem invoiceMemo">{this.state.memo}</div></Tooltip>
+
+                <Tooltip title = "Double click to edit!"><div className = "invoiceEmployee invoiceDataItem invoiceEmployee">{ `${this.state.employeeFirstName} ${this.state.employeeLastName}` }</div></Tooltip>
 
                 <div className = "invoiceDate invoiceDataItem invoiceDate">{displayDate}</div>
 
-                <div className = "invoiceHours invoiceDataItem invoiceHours">{Number(this.state.hours).toFixed(2)}</div>
+                <Tooltip title = "Double click to edit!"><div className = "invoiceHours invoiceDataItem invoiceHours">{Number(this.state.hours).toFixed(2)}</div></Tooltip>
 
                 <div className = "invoiceRate invoiceDataItem invoiceRate">${this.state.billingrate}</div>
 
@@ -89,31 +144,39 @@ export default class InvoiceRow extends Component {
                         <DialogTitle id="form-dialog-title">Edit Memo</DialogTitle>
                         <DialogContent>
 
+                        <div className = "invoiceModalContent">
                             <div className = "editMemoModal">
-                                <textarea value = {this.state.memo}/>
+                                <h3>Memo:</h3>
+                                <textarea value = {this.state.memo} onChange = {this.handleMemo}/>
                             </div>
+                            
+                            <div className = "modalContentContainer">
+                                <h3>Employee:</h3>
+                                <div className = "invoiceModalSelect">
+                                    <select onChange = {this.handleEmployee} value = {this.state.employeeid}>
+                                        {employeeOptions}
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div className = "modalContentContainer">
+                                <h3>Hours:</h3>
+                                <div className = "editHoursModal">
+                                    <input type = "number" value = {this.state.hours} onChange = {this.handleHours} step = "0.01"/>
+                                </div>
+                            </div>
+                        </div>
 
-                            <FormControl fullWidth>
-                            <InputLabel htmlFor="role-simple">Employee</InputLabel>
-                            <Select
-                                inputProps={{
-                                name: 'Employee',
-                                }}
-                                fullWidth
-                            >
-                                <MenuItem value="bill">Hourly</MenuItem>
-                                <MenuItem value="flat">Flat Rate</MenuItem>
-                                <MenuItem value="none">Non-Billing</MenuItem>
-                            </Select>
-                            </FormControl>
-
-                            </DialogContent>
+                        </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
                             Cancel
                             </Button>
-                            <Button onClick={this.addProject} color="primary">
-                            Add
+                            <Button onClick={this.deleteMemo} color="primary">
+                            Delete
+                            </Button>
+                            <Button onClick={this.updateMemo} color="primary">
+                            Edit
                             </Button>
                         </DialogActions>
                         </Dialog>

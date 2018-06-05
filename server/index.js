@@ -93,6 +93,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 app.get('/auth/me', (req, res, next) => {
     res.send(req.user)
 })
+app.get('/api/logout', controller.logout);
 
 //Client calls
 app.get('/api/clients', controller.getAllClients);
@@ -114,6 +115,7 @@ app.put('/api/memos/:memoid', controller.editMemo);
 app.get('/api/twoweekmemos/:one/:fourteen', controller.getTwoWeekMemos);
 app.get('/api/twoweektotals/:one/:fourteen', controller.getTwoWeekTotals);
 app.get('/api/invoicememos/:clientid/:startDate/:endDate', controller.getInvoiceMemos);
+app.put('/api/invoicememos/:memoid', controller.editInvoiceMemo);
 
 //Employee calls
 app.get('/api/employees', controller.getEmployees);

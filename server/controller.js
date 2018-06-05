@@ -145,5 +145,17 @@ module.exports = {
         const { companyid } = req.user;
         req.app.get('db').update_company_logo([logoURL, companyid])
             .then( () => res.sendStatus(200))
-    }
+    },
+
+    logout: (req, res) => {
+        req.logOut();
+        res.status(302).redirect('http://localhost:3000/#/');
+    },
+
+    editInvoiceMemo: (req, res, next) => {
+        const { memoid } = req.params;
+        const { memo, employeeid, hours } = req.body;
+        req.app.get('db').update_invoice_memos([memoid, memo, employeeid, hours])
+            .then( () => res.sendStatus(200))
+    },
 }

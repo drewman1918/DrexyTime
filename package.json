@@ -19,6 +19,7 @@
     "passport-auth0": "^0.6.1",
     "react": "^16.3.2",
     "react-chartjs-2": "^2.7.2",
+    "react-data-export": "^0.4.2",
     "react-day-picker": "^7.1.9",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
