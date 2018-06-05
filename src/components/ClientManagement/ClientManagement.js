@@ -7,6 +7,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import Client from "./Client";
+import { connect } from 'react-redux';
+import NotAllowed from './../NotAllowed/NotAllowed';
 import "./ClientManagement.css";
 
 class ClientManagement extends Component{
@@ -94,6 +96,8 @@ class ClientManagement extends Component{
 
         return(
             <div className = "clientManagementContainer">
+                {(this.props.role !== 'admin') ? <NotAllowed/> :
+                <div>
                 <div className = "CMTitleContainer">
                     <h2><span className = "accent">Client</span>Management</h2>
                 </div>
@@ -159,10 +163,16 @@ class ClientManagement extends Component{
                 <div className = "clients">
                     {Clients}
                 </div>
-
+                </div>}
             </div>
         )
     }
 }
 
-export default ClientManagement;
+function mapStateToProps(state){
+    return{
+        role: state.userReducer.role
+    }
+}
+
+export default connect(mapStateToProps)(ClientManagement);

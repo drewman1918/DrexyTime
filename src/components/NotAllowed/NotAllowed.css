@@ -1,0 +1,11 @@
+.notAllowed > h2{
+    font-size: 30px;
+    color: #0097a7;
+}
+
+.notAllowed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc( 100vh - 120px );
+}

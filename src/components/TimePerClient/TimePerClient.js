@@ -8,6 +8,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import InvoiceRow from './InvoiceRow';
 import "./TimePerClient.css";
 import ReactExport from "react-data-export";
+import NotAllowed from './../NotAllowed/NotAllowed';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -89,7 +90,6 @@ class TimePerClient extends Component{
     }
     
     render(){
-
         const clientOptions = this.props.clients.map( client => {
             return { 
                 label: `${client.lastname}, ${client.firstname}`, value: client.clientid
@@ -131,7 +131,8 @@ class TimePerClient extends Component{
 
         return(
             <div className = "timePerClientContainer">
-
+                {(this.props.role !== 'admin') ? <NotAllowed/> : 
+                <div>
                 <div className = "myTime">
                     <div className = "titleContainer">
                         <h2><span className = "accent">Client</span>Invoicing</h2>
@@ -255,7 +256,7 @@ class TimePerClient extends Component{
                         </ExcelFile>
                     </div>
                 </div>
-
+            </div>}
             </div>
 
         )
@@ -264,7 +265,8 @@ class TimePerClient extends Component{
 
 function mapStateToProps(state){
     return{
-        clients: state.clientReducer.clients
+        clients: state.clientReducer.clients,
+        role: state.userReducer.role
     }
 }
 

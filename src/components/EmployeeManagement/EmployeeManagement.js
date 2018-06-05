@@ -10,6 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import { connect } from 'react-redux';
+import NotAllowed from './../NotAllowed/NotAllowed';
 import FormControl from '@material-ui/core/FormControl';
 import "./EmployeeManagement.css";
 
@@ -123,6 +125,8 @@ class EmployeeManagement extends Component{
 
         return(
             <div className = "employeeManagementContainer">
+                {(this.props.role !== 'admin') ? <NotAllowed/> :
+                <div>
                 <div className = "EMTitleContainer">
                     <h2><span className = "accent">User</span>Management</h2>
                 </div>
@@ -221,9 +225,16 @@ class EmployeeManagement extends Component{
                 <div className = "employees">
                     {employees}
                 </div>
+            </div>}
             </div>
         )
     }
 }
 
-export default EmployeeManagement;
+function mapStateToProps(state){
+    return{
+        role: state.userReducer.role
+    }
+}
+
+export default connect(mapStateToProps)(EmployeeManagement);

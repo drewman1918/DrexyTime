@@ -5,6 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import store from './ducks/store';
+import { HashRouter } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
@@ -30,10 +31,12 @@ const theme = createMuiTheme({
   });
 
 ReactDOM.render(
+  <HashRouter>
 <MuiThemeProvider theme = {theme}>
     <Provider store = {store}>
         <App />
     </Provider>
 </MuiThemeProvider>
+</HashRouter>
 , document.getElementById('root'));
 // registerServiceWorker();

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import FileUpload from './FileUpload';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import NotAllowed from './../NotAllowed/NotAllowed';
 import './MyCompany.css';
 
-export default class MyCompany extends Component{
+class MyCompany extends Component{
     constructor(){
         super()
 
@@ -29,6 +31,8 @@ export default class MyCompany extends Component{
     render(){
         return(
             <div className = "myCompanyContainer">
+                {(this.props.role !== 'admin') ? <NotAllowed/> :
+                <div>
                     <div className = "MCTitleContainer">
                         <h2><span className = "accent">My</span>Company</h2>
                     </div>
@@ -45,7 +49,16 @@ export default class MyCompany extends Component{
                             <FileUpload getLogoFn = {this.getLogo}/>
                         </div>
                     </div>
+                </div>}
             </div>
         )
     }
 }
+
+function mapStateToProps(state){
+    return{
+        role: state.userReducer.role
+    }
+}
+
+export default connect(mapStateToProps)(MyCompany);

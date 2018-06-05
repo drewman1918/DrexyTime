@@ -3,7 +3,9 @@ import Button from '@material-ui/core/Button';
 import React, { Component } from 'react';
 import "./TimePerEmployee.css";
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { Pie } from 'react-chartjs-2';
+import NotAllowed from './../NotAllowed/NotAllowed';
 
 class TimePerEmployee extends Component{
     constructor(){
@@ -123,7 +125,8 @@ class TimePerEmployee extends Component{
 
         return(
             <div className = "timePerEmployeeContainer">
-
+                {(this.props.role !== 'admin') ? <NotAllowed/> :
+                <div>
                 <div className = "myTime">
                     <div className = "titleContainer">
                         <h2><span className = "accent">User</span>Statistics</h2>
@@ -168,10 +171,16 @@ class TimePerEmployee extends Component{
                 <div>
                     {employees}
                 </div>
-
+            </div>}
             </div>
         )
     }
 }
 
-export default TimePerEmployee;
+function mapStateToProps(state){
+    return{
+        role: state.userReducer.role
+    }
+}
+
+export default connect(mapStateToProps)(TimePerEmployee);
