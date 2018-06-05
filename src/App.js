@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setUser } from './ducks/userReducer';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
+import LandingPage from './components/LandingPage/LandingPage';
 import routes from './routes';
 import { HashRouter } from 'react-router-dom';
 import './App.css';

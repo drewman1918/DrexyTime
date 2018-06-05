@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './ducks/store';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+
 const theme = createMuiTheme({
     tooltip: {
       color: '#f1f1f1',

@@ -10,7 +10,6 @@ class Header extends Component{
     
     render(){
         const { REACT_APP_LOGOUT } = process.env;
-        console.log(REACT_APP_LOGOUT)
         return(
             <div className = "header">
                 <div className = "headerContainer">
