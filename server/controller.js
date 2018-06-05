@@ -154,8 +154,8 @@ module.exports = {
 
     editInvoiceMemo: (req, res, next) => {
         const { memoid } = req.params;
-        const { memo, employeeid, hours } = req.body;
-        req.app.get('db').update_invoice_memos([memoid, memo, employeeid, hours])
+        const { memo, employeeid, hours, projectid } = req.body;
+        req.app.get('db').update_invoice_memos([memoid, memo, employeeid, hours, projectid])
             .then( () => res.sendStatus(200))
     },
 }

@@ -4,4 +4,4 @@ JOIN employees e ON e.employeeid = m.employeeid
 JOIN projects p ON p.projectid = m.projectid
 JOIN clients c ON c.clientid = p.clientid
 WHERE c.clientid = $1 AND date BETWEEN $2 AND $3
-ORDER BY date ASC;
+ORDER BY projectname ASC, date ASC;

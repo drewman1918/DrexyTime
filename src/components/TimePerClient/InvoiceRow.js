@@ -26,12 +26,15 @@ export default class InvoiceRow extends Component {
             employeeid: '',
             clientid: '',
             employees: [],
+            projects: [],
             open: false
         }
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleHours = this.handleHours.bind(this);
         this.updateMemo = this.updateMemo.bind(this);
         this.deleteMemo = this.deleteMemo.bind(this);
+        this.getProjects = this.getProjects.bind(this);
+        this.resetState = this.resetState.bind(this);
     }
 
     componentDidMount(){
@@ -50,6 +53,20 @@ export default class InvoiceRow extends Component {
             clientid: data.clientid,
         })
         this.getEmployees();
+        this.getProjects();
+    }
+
+    resetState(){
+        const { data } = this.props;
+        this.setState({
+            memo: data.memo,
+            employeeFirstName: data.employee_firstname,
+            employeeLastName: data.employee_lastname,
+            projectName: data.projectname,
+            hours: data.hours,
+            projectid: data.projectid,
+            employeeid: data.employeeid,
+        })
     }
 
     getEmployees(){
@@ -59,6 +76,15 @@ export default class InvoiceRow extends Component {
                     employees: res.data
                 })
             });
+    }
+
+    getProjects(){
+        axios.get(`/api/projects/${this.props.data.clientid}`)
+        .then( res => {
+            this.setState({
+                projects: res.data
+            })
+        })
     }
 
     deleteMemo(){
@@ -76,9 +102,10 @@ export default class InvoiceRow extends Component {
       }
 
     handleClose = () => {
-    this.setState({
-        open: false,
-    });
+        this.setState({
+            open: false,
+        });
+        this.resetState();
     }
 
     handleMemo = (e) => {
@@ -98,6 +125,16 @@ export default class InvoiceRow extends Component {
         });
     }
 
+    handleProject = (e) => {
+        const project = this.state.projects.filter( project => project.projectid == e.target.value);
+        const { name } = project[0]
+
+        this.setState({
+            projectid: e.target.value,
+            projectName: name
+        })
+    }
+
     handleHours(e){
         this.setState({
             hours: e.target.value
@@ -105,9 +142,11 @@ export default class InvoiceRow extends Component {
     }
 
     updateMemo(){
-        axios.put(`/api/invoicememos/${this.state.memoid}`, {memo: this.state.memo, employeeid: this.state.employeeid, hours: this.state.hours})
+        axios.put(`/api/invoicememos/${this.state.memoid}`, {memo: this.state.memo, employeeid: this.state.employeeid, hours: this.state.hours, projectid: this.state.projectid})
             .then( () => {
-                this.handleClose();
+                this.setState({
+                    open: false
+                });
             })
     }
     
@@ -120,14 +159,23 @@ export default class InvoiceRow extends Component {
             )
         })
 
+        const projectOptions = this.state.projects.map( project => {
+            return(
+                <option key = {project.projectid} value = {project.projectid}>{project.name}</option>
+            )
+        })
+
+
         return(
             <div onDoubleClick = { this.handleClickOpen }className = "invoiceDataRow">
 
-                <Tooltip title = "Double click to edit!"><div className = "invoiceMemo invoiceDataItem invoiceMemo">{this.state.memo}</div></Tooltip>
+                <div className = "invoiceDate invoiceDataItem invoiceDate">{displayDate}</div>
 
                 <Tooltip title = "Double click to edit!"><div className = "invoiceEmployee invoiceDataItem invoiceEmployee">{ `${this.state.employeeFirstName} ${this.state.employeeLastName}` }</div></Tooltip>
 
-                <div className = "invoiceDate invoiceDataItem invoiceDate">{displayDate}</div>
+                <Tooltip title = "Double click to edit!"><div className = "invoiceEmployee invoiceDataItem invoiceProject">{ this.state.projectName }</div></Tooltip>
+
+                <Tooltip title = "Double click to edit!"><div className = "invoiceMemo invoiceDataItem invoiceMemo">{this.state.memo}</div></Tooltip>
 
                 <Tooltip title = "Double click to edit!"><div className = "invoiceHours invoiceDataItem invoiceHours">{Number(this.state.hours).toFixed(2)}</div></Tooltip>
 
@@ -145,18 +193,28 @@ export default class InvoiceRow extends Component {
                         <DialogContent>
 
                         <div className = "invoiceModalContent">
-                            <div className = "editMemoModal">
-                                <h3>Memo:</h3>
-                                <textarea value = {this.state.memo} onChange = {this.handleMemo}/>
-                            </div>
                             
                             <div className = "modalContentContainer">
-                                <h3>Employee:</h3>
+                                <h3>Staff:</h3>
                                 <div className = "invoiceModalSelect">
                                     <select onChange = {this.handleEmployee} value = {this.state.employeeid}>
                                         {employeeOptions}
                                     </select>
                                 </div>
+                            </div>
+
+                            <div className = "modalContentContainer">
+                                <h3>Project:</h3>
+                                <div className = "invoiceModalSelect">
+                                    <select onChange = {this.handleProject} value = {this.state.projectid}>
+                                        {projectOptions}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className = "editMemoModal">
+                                <h3>Memo:</h3>
+                                <textarea value = {this.state.memo} onChange = {this.handleMemo}/>
                             </div>
                             
                             <div className = "modalContentContainer">
@@ -169,15 +227,17 @@ export default class InvoiceRow extends Component {
 
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">
-                            Cancel
-                            </Button>
-                            <Button onClick={this.deleteMemo} color="primary">
-                            Delete
-                            </Button>
-                            <Button onClick={this.updateMemo} color="primary">
-                            Edit
-                            </Button>
+                            <div className = "editInvoiceModalButtons">
+                                <Button onClick={this.handleClose} color="secondary">
+                                Cancel
+                                </Button>
+                                <Button onClick={this.deleteMemo} color="secondary" variant = "raised">
+                                Delete
+                                </Button>
+                                <Button onClick={this.updateMemo} color="primary">
+                                Edit
+                                </Button>
+                            </div>
                         </DialogActions>
                         </Dialog>
                 </div>

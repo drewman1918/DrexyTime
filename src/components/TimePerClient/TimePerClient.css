@@ -109,7 +109,7 @@
 
 .invoiceHeaderRow{
     display: grid;
-    grid-template-columns: 4fr 1.3fr 1.3fr repeat(3, 1fr);
+    grid-template-columns: 1.3fr 1.3fr 1.3fr 4fr repeat(3, 1fr);
 }
 
 .invoiceHeader{
@@ -122,7 +122,7 @@
 
 .invoiceDataRow{
     display: grid;
-    grid-template-columns: 4fr 1.3fr 1.3fr repeat(3, 1fr);
+    grid-template-columns: 1.3fr 1.3fr 1.3fr 4fr repeat(3, 1fr);
 }
 
 .invoiceDataItem{
@@ -132,7 +132,7 @@
     align-items: center;
 }
 
-.invoiceEmployee, .invoiceDate, .invoiceHours, .invoiceRate, .invoiceTotal{
+.invoiceEmployee, .invoiceDate, .invoiceHours, .invoiceRate, .invoiceTotal, .invoiceProject{
     text-align: center;
     display: flex;
     justify-content: center;
@@ -142,7 +142,7 @@
 
 .invoiceTotalsRow{
     display: grid;
-    grid-template-columns: 4fr 1.3fr 1.3fr 1fr 1fr 1fr;
+    grid-template-columns: 1.3fr 1.3fr 1.3fr 4fr repeat(3, 1fr);
     margin-bottom: 50px;
 }
 
@@ -175,12 +175,14 @@
 
 .editMemoModal > textarea {
     resize: none;
-    width: 97%;
+    width: 100%;
     margin-bottom: 20px;
     margin-top: 5px;
     border: 1px solid #0097a7;
     font-size: 14px;
     outline: none;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .invoiceModalSelect{
@@ -217,4 +219,23 @@
 
 .modalContentContainer{
     width: 100%;
+}
+
+.editInvoiceModalButtons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+.downloadInvoiceButtons{
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.excel{
+    background: green;
 }

@@ -5,8 +5,12 @@ import Button from '@material-ui/core/Button';
 import { getAllClients } from './../../ducks/clientReducer';
 import axios from 'axios';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import "./TimePerClient.css";
 import InvoiceRow from './InvoiceRow';
+import "./TimePerClient.css";
+import ReactExport from "react-data-export";
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 class TimePerClient extends Component{
     constructor(){
@@ -107,7 +111,24 @@ class TimePerClient extends Component{
                 acc += curr.hours * curr.billingrate
             )
         }, 0 ).toFixed(2)
-        
+
+        const practice = this.state.memos.map( memo => {
+            const name = `${memo.employee_firstname} ${memo.employee_lastname}`;
+            const total = Number(memo.hours) * Number(memo.billingrate);
+            return [memo.memo, name, memo.date, memo.hours, memo.billingrate, total]
+        })
+
+        const invoiceDataSet = [
+            {
+                columns: ["Date", "Staff", "Project", "Memo", "Hours", "Rate/Hr", "Total"],
+                data:
+                    this.state.memos.map( memo => {
+                        const name = `${memo.employee_firstname} ${memo.employee_lastname}`;
+                        const total = Number(memo.hours) * Number(memo.billingrate);
+                        return [memo.date.slice(0,10), name, memo.projectname, memo.memo, memo.hours, memo.billingrate, total] })
+            }
+        ]
+
         return(
             <div className = "timePerClientContainer">
 
@@ -186,11 +207,13 @@ class TimePerClient extends Component{
                             
                             <div className = "invoiceHeaderRow">
                             
-                                <div className = "invoiceMemo invoiceHeader">Memo</div>
-
-                                <div className = "invoiceEmployee invoiceHeader">Employee</div>
-
                                 <div className = "invoiceDate invoiceHeader">Date</div>
+
+                                <div className = "invoiceEmployee invoiceHeader">Staff</div>
+
+                                <div className = "invoiceMemo invoiceHeader">Project</div>
+
+                                <div className = "invoiceMemo invoiceHeader">Memo</div>
 
                                 <div className = "invoiceHours invoiceHeader">Hours</div>
 
@@ -208,6 +231,7 @@ class TimePerClient extends Component{
                                 <div></div>
                                 <div></div>
                                 <div></div>
+                                <div></div>
                                 <div className = "invoiceTotals invoiceTotalTitle">Total:</div>
                                 <div className = "invoiceTotals invoiceTotalSum">${sum}</div>
                             
@@ -218,6 +242,18 @@ class TimePerClient extends Component{
                     </div>
 
                 
+                </div>
+
+                <div className = "downloadInvoiceButtons">
+                    <div className = "excel">
+                        <ExcelFile filename = {`${this.state.clientName}_${this.state.startDate.toDateString().slice(4, 15)}_to_${this.state.endDate.toDateString().slice(4, 15)}`} 
+                                   element = {<Button variant = "raised" color = "primary">Download Data to Excel</Button>}>
+                            <ExcelSheet 
+                            dataSet = {invoiceDataSet} 
+                            name = {new Date().toDateString().slice(4, 15)}
+                            />
+                        </ExcelFile>
+                    </div>
                 </div>
 
             </div>
