@@ -8,6 +8,7 @@
 
 .menu{
     height: calc( 100vh - 529px );
+    max-height: 267px;
     min-height: 42px;
     overflow: auto;
     

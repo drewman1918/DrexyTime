@@ -1,6 +1,7 @@
 module.exports = {
     getAllClients: (req, res, next) => {
-        req.app.get('db').get_all_clients()
+        const { companyid } = req.user;
+        req.app.get('db').get_all_clients([companyid])
             .then( clients => {
                 res.status(200).send(clients)
             })
@@ -43,7 +44,8 @@ module.exports = {
     },
 
     getEmployees: (req, res, next) => {
-        req.app.get('db').get_all_employees()
+        const { companyid } = req.user;
+        req.app.get('db').get_all_employees([companyid])
             .then ( employees => {
                 res.status(200).send(employees)
             })
@@ -72,7 +74,8 @@ module.exports = {
 
     addEmployee: (req, res, next) => {
         const { email, firstname, lastname, billingrate, payrate, role } = req.body;
-        req.app.get('db').add_employee([email, firstname, lastname, billingrate, payrate, role])
+        const { companyid } = req.user;
+        req.app.get('db').add_employee([email, firstname, lastname, billingrate, payrate, role, companyid])
             .then( () => res.sendStatus(200));
     },
 
@@ -91,7 +94,8 @@ module.exports = {
 
     addClient: (req, res, next) => {
         const { firstname, lastname, email } = req.body;
-        req.app.get('db').add_client([firstname, lastname, email])
+        const { companyid } = req.user;
+        req.app.get('db').add_client([firstname, lastname, email, companyid])
             .then( () => {res.sendStatus(200)})
     },
 
