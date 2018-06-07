@@ -153,7 +153,7 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.status(302).redirect('http://localhost:3000/#/');
+        res.status(302).redirect(process.env.LOGOUT_REDIRECT);
     },
 
     editInvoiceMemo: (req, res, next) => {
