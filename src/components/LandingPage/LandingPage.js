@@ -119,6 +119,8 @@ export default class LandingPage extends Component {
         return(
             <div className = "landingPage">
                 <LandingNavBar openRegisterModal = {this.handleClickOpen}/>
+                <div className = "landingPageContentContainer">
+
                     {(this.state.loading) ?
                     <div className = "loader">
                         <Loader
@@ -131,8 +133,6 @@ export default class LandingPage extends Component {
                     :
                     null
                     }
-                <div className = "landingPageContentContainer">
-
 
                     <Dialog
                         open={this.state.open}
