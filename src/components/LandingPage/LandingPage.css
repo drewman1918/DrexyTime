@@ -1,0 +1,24 @@
+.landingPageContentContainer{
+	background: #babcba;
+    padding-top: 67px;
+    height: 100vh;
+}
+
+.registrationInfo{
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.registerButtonsRow{
+    padding: 20px;
+}
+
+.loader{
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999999;
+}

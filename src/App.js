@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <HashRouter>
         { (this.props.role === 'admin') ? 
-          ((this.props.location.pathname !== '/') ?
+          ((this.props.location.pathname !== '/' ) ?
             <div className="App">
               <Header/>
                 <div className = "content">
@@ -38,7 +38,7 @@ class App extends Component {
             </div>)
         :
         (this.props.role === 'user') ?
-          ((this.props.location.pathname !== '/') ?
+          ((this.props.location.pathname !== '/' ) ?
             <div className="App">
               <Header/>
                 <div className = "content">

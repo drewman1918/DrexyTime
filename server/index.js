@@ -7,8 +7,8 @@ const express = require('express')
       , controller = require('./controller')
       , bodyParser = require('body-parser')
       , nodemailer = require('nodemailer')
-      , S3 = require('./S3.js');
-
+      , S3 = require('./S3.js')
+      
 const {
     SERVER_PORT,
     SESSION_SECRET,
@@ -18,8 +18,11 @@ const {
     CALLBACK_URL,
     CONNECTION_STRING,
     EMAIL,
-    EMAIL_PASSWORD
+    EMAIL_PASSWORD,
+    STRIPE_SECRET_KEY,
 } = process.env;
+        
+const stripe = require("stripe")(STRIPE_SECRET_KEY);
 
 const app = express();
 app.use(bodyParser.json());
@@ -95,6 +98,10 @@ app.get('/auth/me', (req, res, next) => {
 })
 app.get('/api/logout', controller.logout);
 
+//Register Call
+app.get('/api/emails', controller.getAllEmails);
+app.post('/api/register', controller.registerNewUser);
+
 //Client calls
 app.get('/api/clients', controller.getAllClients);
 app.post('/api/clients', controller.addClient);
@@ -129,6 +136,48 @@ app.get('/api/maindata/:startDate/:endDate', controller.getMainData);
 //Company Logo
 app.get('/api/companylogo', controller.getCompanyLogo);
 app.put('/api/companylogo', controller.updateCompanyLogo);
+
+//Stripe
+app.post('/api/stripe', function (req, res, next) {
+    const stripeToken = req.body.stripeToken;
+
+    stripe.customers.create({
+        //pass in the email from the front end
+        email: req.body.email,
+        source: stripeToken,
+    }, function(err, customer){
+        //asynchronously called
+        if (err) {
+            res.send({
+                success: false,
+                message: 'Error'
+            })
+        } else {
+            const { id } = customer;
+
+            stripe.subscriptions.create({
+                customer: id,
+                items: [
+                    {
+                        plan: 'plan_D09wZts5tTogg9',
+                    },
+                ],
+            },  function(err, subscription) {
+                // asynchronously called
+                if(err) {
+                    res.send({
+                        success: false,
+                        message: 'Error'
+                    })
+                } else {
+                    res.send(subscription)
+                }
+            })
+
+        }
+    }
+    )
+});
 
 // Nodemailer
 var transporter = nodemailer.createTransport({

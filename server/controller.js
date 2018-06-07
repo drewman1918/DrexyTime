@@ -162,4 +162,15 @@ module.exports = {
         req.app.get('db').update_invoice_memos([memoid, memo, employeeid, hours, projectid])
             .then( () => res.sendStatus(200))
     },
+
+    registerNewUser: (req, res, next) => {
+        const {companyName, email, firstname, lastname, subscriptionid} = req.body;
+        req.app.get('db').register_user([companyName, email, firstname, lastname, subscriptionid])
+            .then( () => res.sendStatus(200))
+    },
+
+    getAllEmails: (req, res, next) => {
+        req.app.get('db').get_all_emails()
+            .then(emails => res.status(200).send(emails))
+    }
 }
