@@ -61,29 +61,31 @@
 
 .hoursWorked{
     width: 100%;
-    height: 100%;
+    height: fill;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background: #0096a5;
 }
 
 .hoursWorked > p {
     width: 100%;
-    height: 100%;
+    height: fill;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background: #0096a5;
+    justify-content: center;
+    text-align: center;
 }
 
-.hoursWorked> p:hover{
+.hoursWorked:hover{
     background: #56c7d6
 }
 
 .zeroWork{
     color: rgba(0,0,0,0.5);
-    cursor: default
+    cursor: default;
+    background: none;
 }
 
 .zeroWork:hover{
