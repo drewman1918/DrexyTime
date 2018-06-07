@@ -25,6 +25,10 @@ const {
 const stripe = require("stripe")(STRIPE_SECRET_KEY);
 
 const app = express();
+
+//Build
+app.use( express.static( `${__dirname}/../build` ) );
+
 app.use(bodyParser.json());
 //This line should enable larger pictures to be uploaded, but it is not working.
 // app.use(bodyParser.urlencoded({extended:true, limit:'50mb'}))();
