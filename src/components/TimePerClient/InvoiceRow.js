@@ -151,9 +151,8 @@ export default class InvoiceRow extends Component {
     }
     
     render() {
-        console.log('Invoice Row State', this.state);
+        console.log(this.props.memo);
         const displayDate = this.state.date.slice(4, 15);
-        console.log(displayDate);
 
         const employeeOptions = this.state.employees.map( employee => {
             return(
