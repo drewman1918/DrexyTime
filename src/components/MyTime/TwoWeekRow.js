@@ -8,7 +8,6 @@ export default class TwoWeekRow extends Component {
 
         console.log('twoweekrow props.state', this.props.state);
         console.log('twoweekrow this.props.data', this.props.data);
-        console.log('twoweekrow one-fourteen Hours', oneHours, twoHours, threeHours, fourHours, fiveHours, sixHours, sevenHours, eightHours, nineHours, tenHours, elevenHours, twelveHours, thirteenHours, fourteenHours,)
 
         const oneHours = Number(this.props.data.filter( x => new Date(this.props.state.one).toDateString() === new Date(x.date).toDateString()).map( x => x.hours)).toFixed(2);
         const twoHours = Number(this.props.data.filter( x => new Date(this.props.state.two).toDateString() === new Date(x.date).toDateString()).map( x => x.hours)).toFixed(2);
@@ -39,6 +38,9 @@ export default class TwoWeekRow extends Component {
         const twelveMemo = this.props.data.filter( x => new Date(this.props.state.twelve).toDateString() === new Date(x.date).toDateString()).map( x => x.memo);
         const thirteenMemo = this.props.data.filter( x => new Date(this.props.state.thirteen).toDateString() === new Date(x.date).toDateString()).map( x => x.memo);
         const fourteenMemo = this.props.data.filter( x => new Date(this.props.state.fourteen).toDateString() === new Date(x.date).toDateString()).map( x => x.memo);
+        
+        console.log('twoweekrow one-fourteen Hours', oneHours, twoHours, threeHours, fourHours, fiveHours, sixHours, sevenHours, eightHours, nineHours, tenHours, elevenHours, twelveHours, thirteenHours, fourteenHours)
+        console.log('fourteen Details', new Date(this.props.state.fourteen), this.props.data.filter(x => new Date(x.date).toDateString()).map(x => x.hours));
 
         return(
             <div className = "twoWeekRow">
