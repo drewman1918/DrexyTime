@@ -7,7 +7,7 @@ export default class TotalRow extends Component {
 
         const days = this.props.state.dates.map(day => {
             return {
-                hour: Number(this.props.data.filter(x => new Date(day).toDateString() === new Date(x.date).toDateString()).map(x => x.totalhours)).toFixed(2)
+                hour: Number(this.props.data.filter(x => day.toDateString() === x.date.toDateString()).map(x => x.totalhours)).toFixed(2)
             }
         });
 
