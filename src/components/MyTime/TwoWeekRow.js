@@ -40,7 +40,7 @@ export default class TwoWeekRow extends Component {
         const fourteenMemo = this.props.data.filter( x => new Date(this.props.state.fourteen).toDateString() === new Date(x.date).toDateString()).map( x => x.memo);
         
         console.log('twoweekrow one-fourteen Hours', oneHours, twoHours, threeHours, fourHours, fiveHours, sixHours, sevenHours, eightHours, nineHours, tenHours, elevenHours, twelveHours, thirteenHours, fourteenHours)
-        console.log('fourteen Details', new Date(this.props.state.fourteen), this.props.data.filter(x => new Date(x.date).toDateString()).map(x => x.hours));
+        console.log('fourteen Details', new Date(this.props.state.fourteen), this.props.data.filter(x => new Date(x.date).toDateString()), this.props.data.filter(x => new Date(x.date).toDateString()).map(x => x.hours));
 
         return(
             <div className = "twoWeekRow">
