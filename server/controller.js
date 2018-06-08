@@ -123,7 +123,6 @@ module.exports = {
         const { one, fourteen } = req.params;
         req.app.get('db').get_two_week_memos([employeeid, one, fourteen])
             .then(memos => {
-                console.log(memos)
                 res.status(200).send(memos)
             } )
     },

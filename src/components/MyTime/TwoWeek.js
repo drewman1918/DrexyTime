@@ -57,6 +57,7 @@ class TwoWeek extends Component{
                 this.setState({
                     memos: res.data.map(memo => {
                         memo.date = new Date(memo.date)
+                        memo.date.setDate(memo.date.getDate() +1)
                         return memo
                     })
                 })
@@ -69,6 +70,7 @@ class TwoWeek extends Component{
                 this.setState({
                     totals: res.data.map(total => {
                         total.date = new Date(total.date)
+                        total.date.setDate(total.date.getDate() + 1)
                         return total
                     })
                 })
