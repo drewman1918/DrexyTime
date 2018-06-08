@@ -11,6 +11,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
+import LandingPageContent from './LandingPageContent';
+import LandingPageHero from './LandingPageHero';
 import './LandingPage.css';
 
 export default class LandingPage extends Component {
@@ -119,8 +121,12 @@ export default class LandingPage extends Component {
         return(
             <div className = "landingPage">
                 <LandingNavBar openRegisterModal = {this.handleClickOpen}/>
-                <div className = "landingPageContentContainer">
+                <div className="landingPageContentContainer">
+                    
+                    <LandingPageHero />
 
+                    <div className="myLandingPageContent"><LandingPageContent /></div>
+                    
                     {(this.state.loading) ?
                     <div className = "loader">
                         <Loader
