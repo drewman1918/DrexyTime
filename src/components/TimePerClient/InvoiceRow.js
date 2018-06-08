@@ -45,7 +45,7 @@ export default class InvoiceRow extends Component {
             employeeLastName: data.employee_lastname,
             projectName: data.projectname,
             hours: data.hours,
-            date: new Date(data.date).toDateString(),
+            date: data.date.slice(0,10),
             billingrate: data.billingrate,
             memoid: data.memoid,
             projectid: data.projectid,
@@ -151,8 +151,7 @@ export default class InvoiceRow extends Component {
     }
     
     render() {
-        console.log(this.props.data);
-        const displayDate = this.state.date.slice(4, 15);
+        const displayDate = this.state.date;
 
         const employeeOptions = this.state.employees.map( employee => {
             return(
