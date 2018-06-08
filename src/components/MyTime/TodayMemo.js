@@ -97,7 +97,7 @@ export default class TodayMemo extends Component {
                         <h3>{this.state.projectName}</h3>
                     </div>
                     
-                    <div className = "memoDate">
+                    <div onClick = {this.startEdit} className = "memoDate">
                         <DayPickerInput 
                             inputProps={{ style: { 
                                 width: "100%",  
@@ -110,7 +110,7 @@ export default class TodayMemo extends Component {
                                 placeholder = "Choose Date"
                                 value = {this.state.date}
                                 onDayChange = {this.handleDayChange}
-                                onClick = {this.startEdit}/>
+                                />
                     </div>
                     
                     <input onClick = {this.startEdit} onChange = {this.handleHoursChange} className = "memoHours" value = {this.state.memoHours}/>
