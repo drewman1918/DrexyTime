@@ -241,7 +241,7 @@ class Timer extends Component{
     }
 
     submitTime1(){
-        let memo = {hours: Number(this.state.hours1), date: this.state.date1.toDateString(), memo: this.state.memo1, projectid: this.state.projectID1, employeeid: this.props.employeeid};
+        let memo = {hours: Number(this.state.hours1), date: this.state.date1, memo: this.state.memo1, projectid: this.state.projectID1, employeeid: this.props.employeeid};
         axios.post('/api/memos', {memo})
             .then( () => {
                 this.seconds1 = 0;
@@ -295,7 +295,7 @@ class Timer extends Component{
     }
 
     submitTime2(){
-        let memo = { hours: Number(this.state.hours2), date: this.state.date2.toDateString(), memo: this.state.memo2, projectid: this.state.projectID2, employeeid: this.props.employeeid};
+        let memo = { hours: Number(this.state.hours2), date: this.state.date2, memo: this.state.memo2, projectid: this.state.projectID2, employeeid: this.props.employeeid};
         axios.post('/api/memos', {memo})
             .then( () => {
                 this.seconds2 = 0;
@@ -349,7 +349,7 @@ class Timer extends Component{
     }
 
     submitTime3(){
-        let memo = { hours: Number(this.state.hours3), date: this.state.date3.toDateString(), memo: this.state.memo3, projectid: this.state.projectID3, employeeid: this.props.employeeid};
+        let memo = { hours: Number(this.state.hours3), date: this.state.date3, memo: this.state.memo3, projectid: this.state.projectID3, employeeid: this.props.employeeid};
         axios.post('/api/memos', {memo})
             .then( () => {
                 this.seconds3 = 0;
