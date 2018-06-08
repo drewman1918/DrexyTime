@@ -406,7 +406,6 @@ class Timer extends Component{
     }
     
     render(){
-        console.log('timer state', this.state);
         const clientOptions = this.props.clients.map( client => {
             return { 
                 label: `${client.lastname}, ${client.firstname}`, value: client.clientid

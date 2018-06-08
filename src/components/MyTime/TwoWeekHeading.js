@@ -8,14 +8,17 @@ import "./TwoWeek.css";
 
 export default class TwoWeekHeading extends Component {
     render(){
+
+        const days = this.props.state.dates;
+
         return(
             <div className = "twoWeekView">
                 <div className = "buttons">
-                    <FastRewind className = "doubleLeftArrow icon" onClick = {this.props.backTwoWeeks}/>
-                    <ChevronLeft className = "leftArrow icon" onClick = {this.props.backOneDay}/>
+                    <FastRewind className = "doubleLeftArrow icon" onClick = {() => this.props.changeDate(-13)}/>
+                    <ChevronLeft className="leftArrow icon" onClick={() => this.props.changeDate(-1)}/>
                     <Button color = "secondary" onClick = {this.props.setToday}>Today</Button>
-                    <ChevronRight className = "rightArrow icon" onClick = {this.props.forwardOneDay}/>
-                    <FastForward className = "doubleRightArrow icon" onClick = {this.props.forwardTwoWeeks}/>
+                    <ChevronRight className="rightArrow icon" onClick={() => this.props.changeDate(1)}/>
+                    <FastForward className="doubleRightArrow icon" onClick={() => this.props.changeDate(13)}/>
                 </div>
 
                 <div className = "datesHeader">
@@ -24,131 +27,22 @@ export default class TwoWeekHeading extends Component {
                         Client and Project
                     </div>
 
-                    <div className = "headerCell one">
-                        <div className = "dayOfWeek">
-                            { this.props.state.one.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.one.toString().slice(4,10) }
-                        </div>
-                    </div>
+                    {
+                        days.map( (day, i) => {
+                            return(
 
-                    <div className = "headerCell two">
-                        <div className = "dayOfWeek">
-                            { this.props.state.two.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.two.toString().slice(4,10) }
-                        </div>
-                    </div>
+                                <div key={i} className = "headerCell one">
+                                    <div className = "dayOfWeek">
+                                        { day.toString().slice(0,3) }
+                                    </div>
+                                    <div className = "monthAndDate">
+                                        { day.toString().slice(4,10) }
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
-                    <div className = "headerCell three">
-                        <div className = "dayOfWeek">
-                            { this.props.state.three.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.three.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell four">
-                        <div className = "dayOfWeek">
-                            { this.props.state.four.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.four.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell five">
-                        <div className = "dayOfWeek">
-                            { this.props.state.five.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.five.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell six">
-                        <div className = "dayOfWeek">
-                            { this.props.state.six.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.six.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell seven">
-                        <div className = "dayOfWeek">
-                            { this.props.state.seven.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.seven.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell eight">
-                        <div className = "dayOfWeek">
-                            { this.props.state.eight.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.eight.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell nine">
-                        <div className = "dayOfWeek">
-                            { this.props.state.nine.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.nine.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell ten">
-                        <div className = "dayOfWeek">
-                            { this.props.state.ten.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.ten.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell eleven">
-                        <div className = "dayOfWeek">
-                            { this.props.state.eleven.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.eleven.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell twelve">
-                        <div className = "dayOfWeek">
-                            { this.props.state.twelve.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.twelve.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell thirteen">
-                        <div className = "dayOfWeek">
-                            { this.props.state.thirteen.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.thirteen.toString().slice(4,10) }
-                        </div>
-                    </div>
-
-                    <div className = "headerCell fourteen">
-                        <div className = "dayOfWeek">
-                            { this.props.state.fourteen.toString().slice(0,3) }
-                        </div>
-                        <div className = "monthAndDate">
-                            { this.props.state.fourteen.toString().slice(4,10) }
-                        </div>
-                    </div>
 
                 </div>
 
