@@ -52,7 +52,11 @@ class TwoWeek extends Component{
 
     getMemos = () => {
         axios.get(`/api/twoweekmemos/${this.state.dates[0].toDateString()}/${this.state.dates[13].toDateString()}`)
-            .then(res => this.setState({memos: res.data}))
+            .then(res => this.setState({
+                memos: res.data.map(memo => {
+                    memo.date = new Date(memo.date)
+                    return memo
+            })}))
     }
 
     getTotals = () => {
