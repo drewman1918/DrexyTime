@@ -65,7 +65,15 @@ class TwoWeek extends Component{
 
     getTotals = () => {
         axios.get(`/api/twoweektotals/${this.state.dates[0].toDateString()}/${this.state.dates[13].toDateString()}`)
-            .then(res => this.setState({totals: res.data}))
+            .then(res => {
+                console.log('totals', res.data)
+                this.setState({
+                    totals: res.data.map(total => {
+                        total.date = new Date(total.date)
+                        return total
+                    })
+                })
+            })
     }
 
     changeDate(number) {
