@@ -237,6 +237,7 @@ class TwoWeek extends Component{
     }
     
     render(){
+        console.log('TwoWeek State', this.state)
         const memos = Object.values(_.groupBy(this.state.memos, "completename")).map( (x, index) => {
             return(
                 <div key = {index}>

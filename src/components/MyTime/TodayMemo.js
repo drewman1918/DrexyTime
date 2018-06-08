@@ -82,6 +82,7 @@ export default class TodayMemo extends Component {
     }
 
     render(){
+        console.log('TodayMemo state', this.state);
         return(
             <div className = "memoContainer">
                 

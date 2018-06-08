@@ -90,6 +90,7 @@ class TimePerClient extends Component{
     }
     
     render(){
+        console.log('Invoice Client State', this.state)
         const clientOptions = this.props.clients.map( client => {
             return { 
                 label: `${client.lastname}, ${client.firstname}`, value: client.clientid
