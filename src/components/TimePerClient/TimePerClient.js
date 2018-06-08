@@ -113,12 +113,6 @@ class TimePerClient extends Component{
             )
         }, 0 ).toFixed(2)
 
-        const practice = this.state.memos.map( memo => {
-            const name = `${memo.employee_firstname} ${memo.employee_lastname}`;
-            const total = Number(memo.hours) * Number(memo.billingrate);
-            return [memo.memo, name, memo.date, memo.hours, memo.billingrate, total]
-        })
-
         const invoiceDataSet = [
             {
                 columns: ["Date", "Staff", "Project", "Memo", "Hours", "Rate/Hr", "Total"],

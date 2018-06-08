@@ -51,7 +51,6 @@ class TwoWeek extends Component{
     }
 
     getMemos = () => {
-        console.log(`/api/twoweekmemos/${this.state.dates[0].toDateString()}/${this.state.dates[13].toDateString()}`)
         axios.get(`/api/twoweekmemos/${this.state.dates[0].toDateString()}/${this.state.dates[13].toDateString()}`)
             .then(res => {
                 console.log(res.data);
@@ -67,7 +66,6 @@ class TwoWeek extends Component{
     getTotals = () => {
         axios.get(`/api/twoweektotals/${this.state.dates[0].toDateString()}/${this.state.dates[13].toDateString()}`)
             .then(res => {
-                console.log('totals', res.data)
                 this.setState({
                     totals: res.data.map(total => {
                         total.date = new Date(total.date)
