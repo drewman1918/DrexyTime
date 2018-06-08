@@ -18,6 +18,7 @@ export default class TotalRow extends Component {
                     <p>Total</p>
                 </div>
                 
+                <div className= "twoWeekTotalContainer">
                 {
                     days.map( (day, i) => {
                         return (
@@ -27,7 +28,7 @@ export default class TotalRow extends Component {
                         )
                     })
                 }
-
+                </div>
                 
             </div>
         )

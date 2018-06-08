@@ -22,6 +22,7 @@ export default class TwoWeekRow extends Component {
                         <p>{this.props.data[0].completename}</p>
                     </div>
 
+                <div className = "twoWeekRowContainer">
                     {
                         days.map( (day, i) => {
                             return(
@@ -43,7 +44,8 @@ export default class TwoWeekRow extends Component {
                             )
                         })
                     }
-
+                
+                </div>
                 </div>
         )
     }
