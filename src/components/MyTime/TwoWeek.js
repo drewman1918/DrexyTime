@@ -51,13 +51,13 @@ class TwoWeek extends Component{
     }
 
     getMemos = () => {
+        console.log(`/api/twoweekmemos/${this.state.dates[0].toDateString()}/${this.state.dates[13].toDateString()}`)
         axios.get(`/api/twoweekmemos/${this.state.dates[0].toDateString()}/${this.state.dates[13].toDateString()}`)
             .then(res => {
                 console.log(res.data);
                 this.setState({
                     memos: res.data.map(memo => {
                         memo.date = new Date(memo.date)
-                        memo.date.setMinutes(memo.date.getMinutes() - memo.date.getTimezoneOffset());
                         return memo
                     })
                 })
@@ -71,7 +71,6 @@ class TwoWeek extends Component{
                 this.setState({
                     totals: res.data.map(total => {
                         total.date = new Date(total.date)
-                        total.date.setMinutes(total.date.getMinutes() - total.date.getTimezoneOffset());
                         return total
                     })
                 })
