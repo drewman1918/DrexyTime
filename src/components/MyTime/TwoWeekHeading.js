@@ -14,11 +14,11 @@ export default class TwoWeekHeading extends Component {
         return(
             <div className = "twoWeekView">
                 <div className = "buttons">
-                    <FastRewind className = "doubleLeftArrow icon" onClick = {() => this.props.changeDate(-13)}/>
+                    <FastRewind className = "doubleLeftArrow icon" onClick = {() => this.props.changeDate(-14)}/>
                     <ChevronLeft className="leftArrow icon" onClick={() => this.props.changeDate(-1)}/>
                     <Button color = "secondary" onClick = {this.props.setToday}>Today</Button>
                     <ChevronRight className="rightArrow icon" onClick={() => this.props.changeDate(1)}/>
-                    <FastForward className="doubleRightArrow icon" onClick={() => this.props.changeDate(13)}/>
+                    <FastForward className="doubleRightArrow icon" onClick={() => this.props.changeDate(14)}/>
                 </div>
 
                 <div className = "datesHeader">
