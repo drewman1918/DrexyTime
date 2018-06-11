@@ -72,16 +72,16 @@ class TimePerEmployee extends Component{
         const employees = this.state.employees.map( employee => {
 
             const mainData = this.state.mainData.filter( entry => entry.employeeid == employee.employeeid)
-            const billableHours = mainData.filter(x => x.type === 'bill').map(x => x.totalhours);
+            const billableHours = mainData.filter(x => x.type === 'bill').map(x => x.totalhours)[0] || 0;
+            const flatHours = mainData.filter(x => x.type === 'flat').map(x => x.totalhours)[0] || 0;
+            const nonBillingHours = mainData.filter(x => x.type === 'none').map(x => x.totalhours)[0] || 0;
             const myData = mainData.map(x => x.totalhours)
             const totalHours = myData.reduce( (agg, curr) => agg+=curr, 0 );
-
-            console.log(mainData);
 
             const data = {
                 labels: ['Billable Hours', 'Flat-Rate Hours', 'Non-Earning Hours'],
                 datasets: [{
-                    data: [...myData],
+                    data: [billableHours, flatHours, nonBillingHours],
                     backgroundColor: ['#4caf50', '#ffeb3b', '#b71c1c'],
                     hoverBackgroundColor: ['#98ee99', '#ffff72', '#f05545']
                 }],
