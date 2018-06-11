@@ -3,6 +3,7 @@ import axios from 'axios';
 import ClearIcon from '@material-ui/icons/Clear';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
+import DeleteConfirm from './../DeleteConfirm/DeleteConfirm';
 import "./EmployeeManagement.css";
 
 export default class Employee extends Component{
@@ -16,7 +17,8 @@ export default class Employee extends Component{
             lastname: '',
             payrate: '',
             role: '',
-            editing: false
+            editing: false,
+            confirmOpen: false
         }
         this.handleFirstName = this.handleFirstName.bind(this);
         this.handleLastName = this.handleLastName.bind(this);
@@ -33,6 +35,18 @@ export default class Employee extends Component{
 
     componentDidMount(){
         this.stateOriginSet();
+    }
+
+    handleConfirmOpen = () => {
+        this.setState({
+            confirmOpen: true
+        })
+    }
+
+    handleClose = () => {
+        this.setState({
+            confirmOpen: false
+        })
     }
 
     stateOriginSet(){
@@ -117,9 +131,12 @@ export default class Employee extends Component{
         return(
             <div className = "employeeInfo">
 
+                <DeleteConfirm dialogueTitle="Are you sure?" dialogueText="This will permanently delete this employee, and all data associated with it, including past memos."
+                    handleClose={this.handleClose} confirmFunction={this.deleteEmployee} open={this.state.confirmOpen} />
+
                 <div className = "employeeName">
                     <h2>{this.state.firstname} {this.state.lastname}</h2>
-                    <div className = "deleteIcon"><Tooltip title = "Delete Employee"><ClearIcon onClick = {this.deleteEmployee}/></Tooltip></div>
+                    <div className = "deleteIcon"><Tooltip title = "Delete Employee"><ClearIcon onClick = {this.handleConfirmOpen}/></Tooltip></div>
                 </div>
 
                 <div className = "employeeTableContainer">

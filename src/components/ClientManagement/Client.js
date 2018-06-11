@@ -19,6 +19,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import DoneIcon from '@material-ui/icons/Done';
+import DeleteConfirm from './../DeleteConfirm/DeleteConfirm';
 
 export default class Client extends Component {
     constructor(){
@@ -33,7 +34,8 @@ export default class Client extends Component {
             type: '',
             flatfee: '',
             open: false,
-            editingEmail: false 
+            editingEmail: false,
+            confirmOpen: false
         }
         this.getProjects = this.getProjects.bind(this);
         this.handleName = this.handleName.bind(this);
@@ -142,6 +144,18 @@ export default class Client extends Component {
             })
     }
 
+    handleConfirmOpen = () => {
+        this.setState({
+            confirmOpen: true
+        })
+    }
+
+    handleConfirmClose = () => {
+        this.setState({
+            confirmOpen: false
+        })
+    }
+
     render(){
 
         const Projects = this.state.projects.map( project => {
@@ -155,9 +169,12 @@ export default class Client extends Component {
         return(
             <div className = "client">
 
+                <DeleteConfirm dialogueTitle="Are you sure?" dialogueText="This will permanently delete this client, and all projects and memos associated with it."
+                    handleClose={this.handleConfirmClose} confirmFunction={this.deleteClient} open={this.state.confirmOpen} />
+
                 <div className = "clientName">
                     <h2>{this.state.lastname}, {this.state.firstname}</h2>
-                    <div className = "deleteIcon"><Tooltip title = "Delete Client"><ClearIcon onClick = {this.deleteClient} /></Tooltip></div>
+                    <div className = "deleteIcon"><Tooltip title = "Delete Client"><ClearIcon onClick = {this.handleConfirmOpen} /></Tooltip></div>
                 </div>
 
                 <div className = "clientInfo">

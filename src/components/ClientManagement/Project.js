@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
+import DeleteConfirm from './../DeleteConfirm/DeleteConfirm';
 import "./ClientManagement.css";
 
 export default class Project extends Component{
@@ -12,7 +13,8 @@ export default class Project extends Component{
             name: '',
             type: '',
             flatfee: '',
-            editing: false
+            editing: false,
+            confirmOpen: false
         }
         this.handleFlatFee = this.handleFlatFee.bind(this);
         this.handleName = this.handleName.bind(this);
@@ -83,13 +85,28 @@ export default class Project extends Component{
             })
     }
 
+    handleConfirmOpen = () => {
+        this.setState({
+            confirmOpen: true
+        })
+    }
+
+    handleConfirmClose = () => {
+        this.setState({
+            confirmOpen: false
+        })
+    }
+
     render(){
         return(
             <div>
+                <DeleteConfirm dialogueTitle="Are you sure?" dialogueText="This will permanently delete this project, and all memos associated with it."
+                    handleClose={this.handleConfirmClose} confirmFunction={this.deleteProject} open={this.state.confirmOpen} />
             <div className = "project">
                 
+
                 <div className = "projectName bottom first deleteCell">
-                    <DeleteIcon onClick = {this.deleteProject} className = "deleteIcon"/>
+                    <DeleteIcon onClick = {this.handleConfirmOpen} className = "deleteIcon"/>
                     <input onClick = {this.editingTrue} onChange = {this.handleName} value = {this.state.name}/>
                 </div>
                 

@@ -6,6 +6,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import DoneIcon from '@material-ui/icons/Done';
 import Tooltip from '@material-ui/core/Tooltip';
 import axios from 'axios';
+import DeleteConfirm from './../DeleteConfirm/DeleteConfirm';
 
 export default class TodayMemo extends Component {
     constructor(){
@@ -18,7 +19,8 @@ export default class TodayMemo extends Component {
             memo: '',
             client: '',
             date: '',
-            editing: false
+            editing: false,
+            confirmOpen: false
         }
         this.handleDayChange = this.handleDayChange.bind(this)
         this.handleHoursChange = this.handleHoursChange.bind(this);
@@ -26,6 +28,18 @@ export default class TodayMemo extends Component {
         this.submitEdit = this.submitEdit.bind(this);
         this.deleteMemo = this.deleteMemo.bind(this);
 
+    }
+
+    handleConfirmOpen = () => {
+        this.setState({
+            confirmOpen: true
+        })
+    }
+
+    handleClose = () => {
+        this.setState({
+            confirmOpen: false
+        })
     }
 
     submitEdit(){
@@ -84,10 +98,11 @@ export default class TodayMemo extends Component {
     render(){
         return(
             <div className = "memoContainer">
-                
+                <DeleteConfirm dialogueTitle="Are you sure?" dialogueText="This will permanently delete this memo, and all data associated with it."
+                    handleClose={this.handleClose} confirmFunction={this.deleteMemo} open={this.state.confirmOpen} />
                 <div className = "memoClient">
                     <h3>{this.state.client}</h3>
-                    <Tooltip title = "Delete Entry"><ClearIcon className = "deleteIcon" onClick = {this.deleteMemo}/></Tooltip>
+                    <Tooltip title = "Delete Entry"><ClearIcon className = "deleteIcon" onClick = {this.handleConfirmOpen}/></Tooltip>
                 </div>
 
                 <div className = "bottomRow">
