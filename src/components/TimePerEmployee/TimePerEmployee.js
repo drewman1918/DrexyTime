@@ -76,6 +76,8 @@ class TimePerEmployee extends Component{
             const myData = mainData.map(x => x.totalhours)
             const totalHours = myData.reduce( (agg, curr) => agg+=curr, 0 );
 
+            console.log('billable Hours', billableHours, 'totalHours', totalHours, 'billing Rate', employee.billingrate);
+
             const data = {
                 labels: ['Billable Hours', 'Flat-Rate Hours', 'Non-Earning Hours'],
                 datasets: [{

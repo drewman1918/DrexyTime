@@ -33,10 +33,8 @@ class Today extends Component{
     }
 
     getTodayMemos() {
-        console.log(`/api/memos/${this.props.employeeid}/${this.state.day.toDateString()}`)
         axios.get(`/api/memos/${this.props.employeeid}/${this.state.day.toDateString()}`)
             .then(res => {
-                console.log(res.data);
                 this.props.getTodayMemos(res.data)
             })
     }

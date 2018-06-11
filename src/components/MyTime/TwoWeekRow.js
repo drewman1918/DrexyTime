@@ -6,8 +6,6 @@ import "./TwoWeek.css";
 export default class TwoWeekRow extends Component {
     render(){
 
-        console.log(this.props)
-
         const days = this.props.state.dates.map( day => {
             return{
                 hour: Number(this.props.data.filter( x => day.toDateString() === x.date.toDateString()).map( x => x.hours)[0] || 0 ).toFixed(2),

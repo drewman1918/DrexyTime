@@ -1,11 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
-.landingPageContentContainer{
-    background: rgb(0,104,118);
-    background: linear-gradient(0deg, rgba(0,104,118,1) 16%, rgba(86,199,214,1) 100%);
-    padding-top: 67px;
-    height: 100vh;
-}
 
 .registrationInfo{
     padding-bottom: 20px;
@@ -28,86 +22,124 @@
     z-index: 99999999;
 }
 
-.myLandingPageContent{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
+.landingPageContentContainer{
+    background: #babcba;
     padding-top: 67px;
+    min-height: 100vh;
+    padding-right: 10px;
+    padding-left: 10px;
+    position: absolute;
 }
 
 .contentContainerLanding{
-    width: 80vw;
-    height: 80vh;
-    background: #f5f5f5;
+    margin-top: 10px;
+    width: 100%;
+    background: white;
     -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
     -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
     box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
-    overflow: auto;
+    margin-bottom: 40px;
 }
 
-.landingHeroHeading > h1{
+.landingPageHeader{
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.landingPageHeader > h2 {
+    font-size: 50px;
+    color: #b71c1c;
+    font-family: 'Lobster';
+    padding-left: 20px;
+}
+
+.sectionHeader{
+    font-size: 30px;
     font-family: 'Roboto';
     color: #006876;
-    font-size: 50px;
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
+    padding: 15px;
 }
 
-.landingHeroCards{
-    padding: 20px 30px;
+.row1Picture{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.row1PictureLeft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row1PictureRight{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    height: 85%;
-    overflow: auto;
+    padding-right: 15px;
+    padding-top: 10px;
 }
 
-.row1{
-    height: 20px;
+.row1PictureRight > img{
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+
+.row1RightText {
     height: 100%;
-}
-
-.timerCard{
-    width: 32%;
-}
-
-.employeeStatisticsCard{
-    width: 65%;
-}
-
-.heroCard{
-    background: white;
-    height: 100%;
-    -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
-    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
-}
-
-.heroCard > h2{
     font-family: 'Roboto';
-    color: #006876;
-    font-size: 24px;
-    padding: 5px;
-    text-align: center;
-    border-bottom: 3px solid #b71c1c;
+    font-style: italic;
+    display: flex;
+    align-items: center;
 }
 
-.timerCardImage {
-    height: calc( 100% - 37px );
+.row1RightText > p {
+    border: 3px solid #006876;
+    border-radius: 40px;
+    padding: 10px 30px;
+
+}
+
+.landingRow2{
+    margin-top: 35px;
+    padding-bottom: 50px;
+}
+
+.row2TitleFlex{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.row2Picture{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.row2PictureDescription{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.timerCardImage > img {
-    height: 100%;
+.row2PictureDescription > p{
+    border: 3px solid #006876;
+    height: 75%;
+    border-radius: 20px;
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    line-height: 1.8;
+        font-family: 'Roboto';
+    font-style: italic;
+}
+
+.row2PictureImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.row2PictureImg > img {
+    width: 100%;
 }
