@@ -87,6 +87,8 @@ class TimePerEmployee extends Component{
                 }],
             };
 
+            console.log(this.state.mainData);
+
             return(
                 <div className = "employeeData" key = {employee.employeeid}>
                     <div className = "employeeName">

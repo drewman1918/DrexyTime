@@ -12,7 +12,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import LandingPageContent from './LandingPageContent';
-import LandingPageHero from './LandingPageHero';
 import './LandingPage.css';
 
 export default class LandingPage extends Component {

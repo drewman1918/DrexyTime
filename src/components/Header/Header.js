@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import Avatar from './Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
 import './Header.css';
 
 class Header extends Component{

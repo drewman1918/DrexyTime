@@ -22,11 +22,11 @@ export default class LandingPageContent extends Component{
                         <div className="row1Picture">
                             
                             <div className="row1PictureLeft">
-                                <img src={Timer} alt="Timer Picture" />
+                                <img src={Timer} alt="Timer" />
                             </div>
 
                             <div className="row1PictureRight">
-                                <img src={Memo} alt="Memo Picture" />
+                                <img src={Memo} alt="Memo" />
 
                                 <div className="row1RightText">
                                     <p>Easily track time for any client and project. Our elegant timer provides three separate timers.

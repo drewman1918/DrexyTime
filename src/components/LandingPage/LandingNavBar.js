@@ -10,7 +10,7 @@ export default class LandingNavBar extends Component{
             <div className = "header">
                 <div className = "headerContainer">
 
-                    <a href = "#" ><Button onClick = {this.props.openRegisterModal} variant = "raised" color="secondary">Register</Button></a>
+                    <Button onClick = {this.props.openRegisterModal} variant = "raised" color="secondary">Register</Button>
 
                     <Typography variant="title" color="inherit"  noWrap>
                         <p className = "loginTitle">Drexy<span>Time</span></p>

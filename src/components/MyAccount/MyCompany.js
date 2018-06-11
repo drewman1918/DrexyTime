@@ -40,7 +40,7 @@ class MyCompany extends Component{
                     <div className = "myCompanyInfoContainer">
                         <div className = "currentLogo">
                             <h2>Current Logo:</h2>
-                            <img className = "companyLogo" src = {this.state.logo}/>
+                            <img className = "companyLogo" src = {this.state.logo} alt = "Company Logo"/>
                             <hr/>
                         </div>
 
