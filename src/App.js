@@ -16,9 +16,10 @@ class App extends Component {
     axios.get('/auth/me')
       .then((res) => {
         this.props.setUser(res.data)
-        this.props.history.push('/mytime/day')
       }
-      );
+    ).then(() => {
+      this.props.history.push('/mytime/day')
+      } );
   }
   
   render() {
