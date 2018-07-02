@@ -75,20 +75,23 @@ passport.deserializeUser( (profile, done) => {
 })
 
 //This exists to pretend that I am logged in, even though I am not logged in. This is the exact information that logging in will pass to req.user. Delete this once I finish developing. 
-// app.use( (req, res, next) => {
-//     req.user = {
-//         billingrate: 100,
-//         email: "drew@bloomfieldcfo.com",
-//         employeeid: 1,
-//         firstname: "drew",
-//         lastname: "bloomfield",
-//         payrate: 25,
-//         profilepicture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-//         role: "admin",
-//         companyid: 1
-//     }
-//     next()
-// })
+app.use( (req, res, next) => {
+    req.user = {
+        billingrate: 100,
+        // email: "drew@bloomfieldcfo.com",
+        email: 'test@user.com',
+        employeeid: 1,
+        // firstname: "drew",
+        firstname: 'test',
+        // lastname: "bloomfield",
+        lastname: "user",
+        payrate: 25,
+        profilepicture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+        role: "admin",
+        companyid: 1
+    }
+    next()
+})
 
 app.get('/login', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {

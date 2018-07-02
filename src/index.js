@@ -9,10 +9,6 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
 const theme = createMuiTheme({
-    tooltip: {
-      color: '#f1f1f1',
-      background: 'blue'
-    },
     palette: {
       primary: {
         light: '#56c7d6',
@@ -30,7 +26,7 @@ const theme = createMuiTheme({
   });
 
 ReactDOM.render(
-  <HashRouter>
+<HashRouter>
 <MuiThemeProvider theme = {theme}>
     <Provider store = {store}>
         <App />
