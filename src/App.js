@@ -25,40 +25,58 @@ class App extends Component {
     return (
       <HashRouter>
         { (this.props.role === 'admin') ? 
-          ((this.props.location.pathname !== '/' ) ?
-            <div className="App">
-              <Header/>
-                <div className = "content">
-                  <Sidebar/>
-                  <div className = "main">
-                    {routes}
-                  </div>
-                </div>
-            </div>
+          // ((this.props.location.pathname !== '/' ) ?
+          //   <div className="App">
+          //     <Header/>
+          //       <div className = "content">
+          //         <Sidebar/>
+          //         <div className = "main">
+          //           {routes}
+          //         </div>
+          //       </div>
+          //   </div>
 
-          :
-            <div className = "App">
-              <LandingPage/>
-            </div>)
-        :
-        (this.props.role === 'user') ?
-          ((this.props.location.pathname !== '/' ) ?
-            <div className="App">
-              <Header/>
-                <div className = "content">
-                  <Sidebar/>
-                  <div className = "main">
-                    {routes}
-                  </div>
-                </div>
+          // :
+          //   <div className = "App">
+          //     <LandingPage/>
+          //   </div>)
+          <div className="App">
+            <Header />
+            <div className="content">
+              <Sidebar />
+              <div className="main">
+                {routes}
+              </div>
             </div>
-
-          :
-            <div className = "App">
-              <LandingPage/>
-            </div>)
+          </div>
         :
-        <LandingPage/>
+        // (this.props.role === 'user') ?
+        //   ((this.props.location.pathname !== '/' ) ?
+        //     <div className="App">
+        //       <Header/>
+        //         <div className = "content">
+        //           <Sidebar/>
+        //           <div className = "main">
+        //             {routes}
+        //           </div>
+        //         </div>
+        //     </div>
+
+        //   :
+        //     <div className = "App">
+        //       <LandingPage/>
+        //     </div>)
+        // :
+        // <LandingPage/>
+            <div className="App">
+              <Header />
+              <div className="content">
+                <Sidebar />
+                <div className="main">
+                  {routes}
+                </div>
+              </div>
+            </div>
         }
 
       </HashRouter>
