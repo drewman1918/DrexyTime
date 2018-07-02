@@ -14,8 +14,11 @@ class App extends Component {
   
   componentDidMount(){
     axios.get('/auth/me')
-      .then((res) => this.props.setUser(res.data));
-    this.props.history.push('/mytime/day')
+      .then((res) => {
+        this.props.setUser(res.data)
+        this.props.history.push('/mytime/day')
+      }
+      );
   }
   
   render() {
