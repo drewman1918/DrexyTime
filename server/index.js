@@ -80,7 +80,7 @@ app.use( (req, res, next) => {
         billingrate: 100,
         // email: "drew@bloomfieldcfo.com",
         email: 'test@user.com',
-        employeeid: 1,
+        employeeid: 14,
         // firstname: "drew",
         firstname: 'test',
         // lastname: "bloomfield",
@@ -88,7 +88,7 @@ app.use( (req, res, next) => {
         payrate: 25,
         profilepicture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
         role: "admin",
-        companyid: 1
+        companyid: 3
     }
     next()
 })
